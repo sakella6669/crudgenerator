@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="lib" path="commons-digester-1.8.jar"/>
+	<classpathentry kind="lib" path="commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="commons-logging-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/jaxen-dom4j.jar"/>
+	<classpathentry kind="lib" path="lib/jaxen-core.jar"/>
+	<classpathentry kind="lib" path="lib/saxpath.jar"/>
+	<classpathentry kind="lib" path="lib/xalan.jar"/>
+	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="lib/serializer.jar"/>
+	<classpathentry kind="lib" path="lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-1.4.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/LiuTongUtils"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DBImporter"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,22 @@
+package {$basePackage}.dto;
+
+import com.bupt.liutong.core.base.BaseDto;
+
+public class {$domainObjectName} extends BaseDto {
+
+{$for columnClassShortName:columnClassShortNames columnName:columnNames}
+	private {$columnClassShortName} {$columnName};
+{$/for}
+
+{$for columnClassShortName:columnClassShortNames columnName:columnNames}
+	public {$columnClassShortName} get{$columnName firstLetterUpper="true"}(){
+		return {$columnName};
+	}
+	
+	public void set{$columnName firstLetterUpper="true"}({$columnClassShortName} {$columnName}){
+		this.{$columnName}={$columnName};
+	}
+	
+{$/for}
+}
+

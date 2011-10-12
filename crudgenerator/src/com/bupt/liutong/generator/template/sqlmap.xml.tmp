@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="{$tableName}">
+	<typeAlias alias="{$domainObjectName}" type="{$basePackage}.dto.{$domainObjectName}" />
+	
+	<select id="get{$domainObjectName}s" resultClass="{$domainObjectName}">
+		SELECT * FROM {$tableName}
+		<dynamic prepend="WHERE">
+			{$for primaryKey:primaryKeys}
+			<isNotEmpty prepend="AND" property="{$primaryKey}">
+				{$primaryKey} = #{$primaryKey}#
+			</isNotEmpty>
+			{$/for}
+		</dynamic>
+	</select>
+	
+	<select id="get{$domainObjectName}sCount" resultClass="int">
+		SELECT COUNT(1) FROM {$tableName}
+		<dynamic prepend="WHERE">
+			{$for primaryKey:primaryKeys}
+			<isNotEmpty prepend="AND" property="{$primaryKey}">
+				{$primaryKey} = #{$primaryKey}#
+			</isNotEmpty>
+			{$/for}
+		</dynamic>
+	</select>
+	
+	<select id="get{$domainObjectName}ById" parameterClass="int" resultClass="{$domainObjectName}">
+		SELECT * FROM {$tableName} WHERE id = #value#
+	</select>
+	
+	<insert id="insert{$domainObjectName}" parameterClass="{$domainObjectName}">
+		INSERT {$tableName} (
+			{$for columnName:columnNames lastNotAppend=","}
+			{$columnName}
+			{$/for}
+		)
+		VALUES (
+			{$for columnName:columnNames lastNotAppend=","}
+			#{$columnName}#
+			{$/for}
+		)
+	</insert>
+	
+	<update id="update{$domainObjectName}" parameterClass="{$domainObjectName}">
+		UPDATE {$tableName} SET 
+		{$for columnName:columnNames lastNotAppend=","}
+		{$columnName} = #{$columnName}#
+		{$/for}
+		WHERE 
+		{$for primaryKey:primaryKeys firstNotPrepend="AND"}
+		{$primaryKey}=#{$primaryKey}#
+		{$/for}
+	</update>
+	
+	<delete id="delete{$domainObjectName}" parameterClass="int">
+		DELETE FROM {$tableName}
+		WHERE id = #value#
+	</delete>
+</sqlMap>

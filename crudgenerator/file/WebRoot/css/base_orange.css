@@ -1,0 +1,298 @@
+body {
+	background-color:#ddeef2;
+	color:#192e32;
+	font: normal 12px "Century Gothic", "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+* {
+	>overflow-x:hidden;
+	margin:0;
+	padding:0;
+}
+
+img {
+	border: 0;
+}
+
+.cke_button_insimg .cke_icon {
+	display: none !important;
+}
+
+.cke_button_insimg .cke_label {
+	display: inline !important;
+}
+
+/* table */
+.title1 {
+	background: #f7fbff;
+	width: 96.5%;
+	height: 40px;
+	margin: 12px auto;
+	border: 1px solid orange;
+}
+
+.title1 .title1_td1 {
+	width: 30%;
+	text-align: left;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 7px 10px;
+}
+
+.title1 .title1_td2 {
+	width: 70%;
+	text-align: right;
+}
+
+/*
+.search {
+	background: #f7fbff;
+	width: 94.5%;
+	height: 30px;
+	margin: 12px auto;
+	padding: 7px 10px;
+	border: 1px solid orange;
+}
+*/
+
+/*
+* table1 查询、添加、修改
+*/
+.table1 {
+	background: #f7fbff;
+	width: 96.5%;
+	height: 50px;
+	margin: 12px auto;
+	border: 1px solid orange;
+}
+
+.table1 td{
+	padding: 5px;
+	font-size:12px;
+	line-height: 150%;
+}
+
+.td20_center {
+	width: 20%;
+	text-align: center;
+}
+
+.td15 {
+	width: 15%;
+	text-align: right;
+}
+
+.td35 {
+	width: 35%;
+	text-align: left;
+}
+
+.td100 {
+	width: 100%;
+	text-align: left;
+}
+
+.td30 {
+	width: 30%;
+	text-align: right;
+}
+
+.td70 {
+	width: 70%;
+	text-align: left;
+	padding-left: 15px;
+}
+
+/*
+.table1 tfoot th strong {
+	font:bold 1.2em "Century Gothic", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin:.5em .5em .5em 0;
+	color:#66a3d3;
+}
+.table1 tfoot th em {
+	color:#f03b58;
+	font-weight: bold;
+	font-size: 1.1em;
+	font-style: normal;
+}
+*/
+
+/*
+* table2 查询列表
+*/
+.table2 {
+	width:96.5%;
+	border-top:1px solid #e5eff8;
+	border-right:1px solid #e5eff8;
+	margin:12px auto;
+	border-collapse:collapse;
+}
+
+.table2 td {
+	color:#192e32;
+	border-bottom:1px solid #e5eff8;
+	border-left:1px solid #e5eff8;
+	padding:.3em 1em;
+	text-align:center;
+	background:#f7fbff;
+}
+
+.table2 th {
+	background:orange;
+	text-align:center;
+	border-bottom:1px solid #e5eff8;
+	font:bold 1.2em/2em "Century Gothic", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#66a3d3;
+}
+
+/*
+.table2 tfoot th {
+	background:#f7fbff;
+	text-align:center;
+}
+*/
+
+/*
+* table3 无框
+*/
+.table3 {
+	background: white;
+	width:96.5%;
+	margin:12px auto;
+	font-weight:normal;
+	border: 1px solid orange;
+}
+
+/* tabs */
+#tabs {
+	width: 96%;
+	margin:1em auto;
+	font: bold 14px "Century Gothic", "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#tabs table {
+	width:96.5%;
+	margin:12px auto;
+	font-weight:normal;
+}
+
+/* button */
+.button_2zi, .button_3zi {
+	background-color:#ddeef2;
+	width: 60px;
+	height: 22px;
+	color: #000000;
+	font-size: 9pt;
+	font-weight: bold;	
+	border:1px solid orange;
+}
+.button_4zi {
+	background-color:#ddeef2;
+	width: 72px;
+	height: 22px;
+	color: #000000;
+	font-size: 9pt;
+	font-weight: bold;	
+	border:1px solid orange;
+}
+.button_5zi {
+	background-color:#ddeef2;
+	width: 84px;
+	height: 22px;
+	color: #000000;
+	font-size: 9pt;
+	font-weight: bold;	
+	border:1px solid orange;
+}
+.button_6zi {
+	background-color:#ddeef2;
+	width: 96px;
+	height: 22px;
+	color: #000000;
+	font-size: 9pt;
+	font-weight: bold;	
+	border:1px solid orange;
+}
+.button_7zi {
+	background-color:#ddeef2;
+	width: 112px;
+	height: 22px;
+	color: #000000;
+	font-size: 9pt;
+	font-weight: bold;	
+	border:1px solid orange;
+}
+
+
+/* icon */
+.icon { display: block; float: left; overflow: hidden; background-repeat: no-repeat; width: 16px; height: 16px; background-image: url(image/ui-icons_ef8c08_256x240.png); }
+.icon-select { background-position: -160px -112px; }
+.icon-delete { background-position: -176px -96px; }
+.icon-update { background-position: -176px -112px; }
+.icon-insert a {
+	float: right;
+	font-size: 12px;
+	font-weight: 400;
+	text-decoration: none;
+	display:block;
+	padding:2px 5px 2px 23px;
+	*padding:4px 5px 2px 23px;
+	border:1px solid orange;
+	background-color:#ddeef2;
+	background-repeat:no-repeat;
+	background-image:url(image/icon-plus.png);
+	background-position: 3px center;
+}
+.icon-insert a:hover {
+	background-color:#f7fbff;
+}
+
+.icon-insert a:visited {
+	color:#192e32;
+}
+
+/*
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.ui-widget { font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif; font-size: 1.1em; }
+.ui-widget .ui-widget { font-size: 1em; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif; font-size: 1em; }
+.ui-widget :active { outline: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #cccccc; background: #f6f6f6 url(image/ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #1c94c4; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #1c94c4; text-decoration: none; }
+.ui-corner-all { -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+.ui-icon { width: 16px; height: 16px; background-image: url(image/ui-icons_222222_256x240.png); }
+.ui-widget-content .ui-icon {background-image: url(image/ui-icons_222222_256x240.png); }
+.ui-widget-header .ui-icon {background-image: url(image/ui-icons_ffffff_256x240.png); }
+.ui-state-default .ui-icon { background-image: url(image/ui-icons_ef8c08_256x240.png); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(image/ui-icons_ef8c08_256x240.png); }
+.ui-state-active .ui-icon {background-image: url(image/ui-icons_ef8c08_256x240.png); }
+.ui-state-highlight .ui-icon {background-image: url(image/ui-icons_228ef1_256x240.png); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(image/ui-icons_ffd27a_256x240.png); }
+
+.ui-icon-trash { background-position: -176px -96px; }
+
+.ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: .5em; top: 50%; margin-top: -8px; }
+.ui-button-icon-only .ui-icon, .ui-button-text-icon .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon { position: absolute; top: 50%; margin-top: -8px; }
+.ui-button-icon-only .ui-icon { left: 50%; margin-left: -8px; }
+
+
+#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+			ul#icons {margin: 0; padding: 0;}
+			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+			ul#icons span.ui-icon {float: left; margin: 0 4px;}
+*/
+
+.page_info {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}

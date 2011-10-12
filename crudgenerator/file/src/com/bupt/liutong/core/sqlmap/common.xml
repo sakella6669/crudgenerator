@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="common">
+	<!-- 
+	<resultMap id="StudentResult" class="com.bupt.liutong.core.dto.Student">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="clazz" column="clazzId" select="Common.getClazzById" />
+	</resultMap>
+		<select id="executeSql" parameterClass="java.lang.String">
+		<![CDATA[$value$]]>
+		</select>
+
+	<select id="getStudentById" resultMap="StudentResult">
+		SELECT * FROM student WHERE id = 2
+	</select>
+
+	<select id="getClazzById" parameterClass="int" resultClass="com.bupt.liutong.core.dto.Clazz">
+		SELECT * FROM clazz WHERE id = #value#
+	</select>
+	-->
+
+	<select id="getCount" parameterClass="java.lang.String"
+		resultClass="java.lang.Integer">
+		<![CDATA[$value$]]>
+	</select>
+</sqlMap>

@@ -1,0 +1,36 @@
+package {$basePackage}.dao;
+
+import java.util.List;
+
+import com.bupt.liutong.core.base.Ibatis;
+import {$basePackage}.dto.{$domainObjectName};
+
+public class {$domainObjectName}Dao {
+	
+	private Ibatis ibatis;
+	
+	@SuppressWarnings("unchecked")
+	public List<{$domainObjectName}> get{$domainObjectName}sByPage({$domainObjectName} {$domainObjectName firstLetterLower="true"}){
+		return (List<{$domainObjectName}>) ibatis.queryForPage("{$tableName}.get{$domainObjectName}s", {$domainObjectName firstLetterLower="true"});
+	}
+	
+	public {$domainObjectName} get{$domainObjectName}ById(int id){
+		return ({$domainObjectName}) ibatis.queryForObject("{$tableName}.get{$domainObjectName}ById", id);
+	}
+	
+	public void insert{$domainObjectName}({$domainObjectName} {$domainObjectName firstLetterLower="true"}){
+		ibatis.insert("{$tableName}.insert{$domainObjectName}", {$domainObjectName firstLetterLower="true"});
+	}
+	
+	public void update{$domainObjectName}({$domainObjectName} {$domainObjectName firstLetterLower="true"}){
+		ibatis.update("{$tableName}.update{$domainObjectName}", {$domainObjectName firstLetterLower="true"});
+	}
+	
+	public void delete{$domainObjectName}(int id){
+		ibatis.delete("{$tableName}.delete{$domainObjectName}", id);
+	}
+
+	public void setIbatis(Ibatis ibatis) {
+		this.ibatis = ibatis;
+	}
+}
