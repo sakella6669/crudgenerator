@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE abatorConfiguration PUBLIC "-//Apache Software Foundation//DTD Abator for iBATIS Configuration 1.0//EN" "http://ibatis.apache.org/dtd/abator-config_1_0.dtd" >
+<abatorConfiguration>
+  <abatorContext>
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/gc" userId="root" password="sa" >
+      <classPathEntry location="C:\Documents and Settings\Administrator\Workspaces\MyEclipse 7.0\HelloWorld\mysql-connector-java-5.1.6-bin.jar" />
+    </jdbcConnection>
+    <javaModelGenerator targetPackage="abator.gc.model" targetProject="HelloWorld" />
+    <sqlMapGenerator targetPackage="abator.gc.sqlMap" targetProject="HelloWorld" />
+    <daoGenerator targetPackage="abator.gc.dao" targetProject="HelloWorld" type="GENERIC-CI" />
+    <table tableName="FinanRepSum" domainObjectName="FinanRepSum">
+    	<columnOverride column="sn" property="sn" jdbcType="tinyint" javaType="byte" />
+    	<columnOverride column="compId" property="compId" jdbcType="char" javaType="String" />
+    	<columnOverride column="infoDate" property="infoDate" jdbcType="datetime" />
+    	<columnOverride column="auditName" property="auditName" jdbcType="char" javaType="String" />
+    	<columnOverride column="auditContent" property="auditContent" jdbcType="text" javaType="String" />
+    </table>
+  </abatorContext>
+</abatorConfiguration>

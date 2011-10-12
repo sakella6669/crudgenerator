@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generateConfiguration>
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		connectionURL="jdbc:mysql://localhost/peiwa" userId="root"
+		password="sa">
+	</jdbcConnection>
+	
+	<templateGenerator>
+		<template templateName="dto.java.tmp"
+			targetName="{$domainObjectName}.java"
+			templatePackage="com.bupt.liutong.generator.template"
+			targetPackage="com.bupt.liutong.sch.dto">
+		</template>
+		<template templateName="form.java.tmp"
+			targetName="{$domainObjectName}Form.java"
+			templatePackage="com.bupt.liutong.generator.template"
+			targetPackage="com.bupt.liutong.sch.form">
+		</template>
+		<template templateName="dao.java.tmp"
+			targetName="{$domainObjectName}Dao.java"
+			templatePackage="com.bupt.liutong.generator.template"
+			targetPackage="com.bupt.liutong.sch.dao">
+		</template>
+		<template templateName="bo.java.tmp"
+			targetName="{$domainObjectName}Bo.java"
+			templatePackage="com.bupt.liutong.generator.template"
+			targetPackage="com.bupt.liutong.sch.bo">
+		</template>
+		<template templateName="action.java.tmp"
+			targetName="{$domainObjectName}Action.java"
+			templatePackage="com.bupt.liutong.generator.template"
+			targetPackage="com.bupt.liutong.sch.action">
+		</template>
+		<template templateName="sqlmap.xml.tmp"
+			targetName="{$tableName}.xml"
+			templatePackage="com.bupt.liutong.generator.template"
+			targetPackage="com.bupt.liutong.sch.sqlmap">
+		</template>
+		<template templateName="list.jsp.tmp"
+			targetName="{$domainObjectName}_list.jsp"
+			templatePackage="com.bupt.liutong.generator.template"
+			targetPackage="com.bupt.liutong.sch.jsp">
+		</template>
+		<template templateName="insert.jsp.tmp"
+			targetName="{$domainObjectName}_insert.jsp"
+			templatePackage="com.bupt.liutong.generator.template"
+			targetPackage="com.bupt.liutong.sch.jsp">
+		</template>
+		<template templateName="update.jsp.tmp"
+			targetName="{$domainObjectName}_update.jsp"
+			templatePackage="com.bupt.liutong.generator.template"
+			targetPackage="com.bupt.liutong.sch.jsp">
+		</template>
+	</templateGenerator>
+	
+	<table tableName="sch_intro_photo" domainObjectName="IntroPhoto"></table>
+	
+	<initParameters>
+		<parameter id="basePackage" value="com.bupt.liutong.sch">
+		</parameter>
+	</initParameters>
+</generateConfiguration>

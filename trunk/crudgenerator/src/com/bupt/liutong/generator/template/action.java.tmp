@@ -1,0 +1,66 @@
+package {$basePackage}.action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+
+import com.bupt.liutong.core.base.BaseAction;
+import {$basePackage}.bo.{$domainObjectName}Bo;
+import {$basePackage}.form.{$domainObjectName}Form;
+import com.bupt.liutong.util.BeanUtils;
+
+public class {$domainObjectName}Action extends BaseAction {
+
+	private {$domainObjectName}Bo {$domainObjectName firstLetterLower="true"}Bo;
+	
+	public ActionForward get{$domainObjectName}sByPage(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		{$domainObjectName}Form {$domainObjectName firstLetterLower="true"}Form = ({$domainObjectName}Form) form;
+		// request.setAttribute("ctmMap", ctm.get("?"));
+		request.setAttribute("{$domainObjectName firstLetterLower="true"}FormList", {$domainObjectName firstLetterLower="true"}Bo.get{$domainObjectName}sByPage({$domainObjectName firstLetterLower="true"}Form));
+		putPageInfo(request, {$domainObjectName firstLetterLower="true"}Form);
+		return mapping.findForward("get{$domainObjectName}sByPageSuccess");
+	}
+	
+	public ActionForward insert{$domainObjectName}(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		// request.setAttribute("?List", getOptionList(ctm.get("?"), false));
+		return mapping.findForward("insert{$domainObjectName}Success");
+	}
+	
+	public ActionForward insert{$domainObjectName}Do(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		{$domainObjectName}Form {$domainObjectName firstLetterLower="true"}Form = ({$domainObjectName}Form) form;
+		{$domainObjectName firstLetterLower="true"}Bo.insert{$domainObjectName}({$domainObjectName firstLetterLower="true"}Form);
+		return mapping.findForward("insert{$domainObjectName}DoSuccess");
+	}
+	
+	public ActionForward update{$domainObjectName}(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		// request.setAttribute("?List", getOptionList(ctm.get("?"), false));
+		{$domainObjectName}Form {$domainObjectName firstLetterLower="true"}Form = ({$domainObjectName}Form) form;
+		BeanUtils.copyProperties({$domainObjectName firstLetterLower="true"}Form, {$domainObjectName firstLetterLower="true"}Bo.get{$domainObjectName}ById({$domainObjectName firstLetterLower="true"}Form));
+		return mapping.findForward("update{$domainObjectName}Success");
+	}
+	
+	public ActionForward update{$domainObjectName}Do(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		{$domainObjectName}Form {$domainObjectName firstLetterLower="true"}Form = ({$domainObjectName}Form) form;
+		{$domainObjectName firstLetterLower="true"}Bo.update{$domainObjectName}({$domainObjectName firstLetterLower="true"}Form);
+		return mapping.findForward("update{$domainObjectName}DoSuccess");
+	}
+	
+	public ActionForward delete{$domainObjectName}s(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		String[] ids = request.getParameterValues("id");
+		{$domainObjectName firstLetterLower="true"}Bo.delete{$domainObjectName}s(ids);
+		return mapping.findForward("delete{$domainObjectName}sSuccess");
+	}
+
+	public void set{$domainObjectName}Bo({$domainObjectName}Bo {$domainObjectName firstLetterLower="true"}Bo) {
+		this.{$domainObjectName firstLetterLower="true"}Bo = {$domainObjectName firstLetterLower="true"}Bo;
+	}
+}

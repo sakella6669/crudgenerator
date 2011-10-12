@@ -1,0 +1,59 @@
+package {$basePackage}.bo;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import com.bupt.liutong.core.base.BaseBo;
+import {$basePackage}.dao.{$domainObjectName}Dao;
+import {$basePackage}.dto.{$domainObjectName};
+import {$basePackage}.form.{$domainObjectName}Form;
+import com.bupt.liutong.util.BeanUtils;
+
+public class {$domainObjectName}Bo extends BaseBo {
+	
+	private {$domainObjectName}Dao {$domainObjectName firstLetterLower="true"}Dao;
+	
+	public List<{$domainObjectName}Form> get{$domainObjectName}sByPage({$domainObjectName}Form {$domainObjectName firstLetterLower="true"}Form){
+		{$domainObjectName} {$domainObjectName firstLetterLower="true"} = new {$domainObjectName}();
+		sm.pagingWithNoCriteria({$domainObjectName firstLetterLower="true"}Form, {$domainObjectName firstLetterLower="true"}, "{$tableName}.get{$domainObjectName}sCount");
+		List<{$domainObjectName}> {$domainObjectName firstLetterLower="true"}s = {$domainObjectName firstLetterLower="true"}Dao.get{$domainObjectName}sByPage({$domainObjectName firstLetterLower="true"});
+		return BeanUtils.dtoToForm({$domainObjectName firstLetterLower="true"}s, {$domainObjectName}Form.class);
+	}
+	
+	public {$domainObjectName}Form get{$domainObjectName}ById({$domainObjectName}Form {$domainObjectName firstLetterLower="true"}Form){
+		{$domainObjectName}Form resultForm = new {$domainObjectName}Form();
+		{$domainObjectName} {$domainObjectName firstLetterLower="true"} = {$domainObjectName firstLetterLower="true"}Dao.get{$domainObjectName}ById({$domainObjectName firstLetterLower="true"}Form.getId());
+		BeanUtils.copyProperties(resultForm, {$domainObjectName firstLetterLower="true"});
+		return resultForm;
+	}
+	
+	@Transactional
+	public void insert{$domainObjectName}({$domainObjectName}Form {$domainObjectName firstLetterLower="true"}Form) {
+		{$domainObjectName} {$domainObjectName firstLetterLower="true"} = new {$domainObjectName}();
+		BeanUtils.copyProperties({$domainObjectName firstLetterLower="true"}, {$domainObjectName firstLetterLower="true"}Form);
+		{$domainObjectName firstLetterLower="true"}Dao.insert{$domainObjectName}({$domainObjectName firstLetterLower="true"});
+	}
+
+	@Transactional
+	public void update{$domainObjectName}({$domainObjectName}Form {$domainObjectName firstLetterLower="true"}Form) {
+		{$domainObjectName} {$domainObjectName firstLetterLower="true"} = new {$domainObjectName}();
+		BeanUtils.copyProperties({$domainObjectName firstLetterLower="true"}, {$domainObjectName firstLetterLower="true"}Form);
+		{$domainObjectName firstLetterLower="true"}Dao.update{$domainObjectName}({$domainObjectName firstLetterLower="true"});
+	}
+	
+	@Transactional
+	public void delete{$domainObjectName}s(String[] ids) {
+		if (ids != null) {
+			for (int i = 0; i < ids.length; i++) {
+				{$domainObjectName firstLetterLower="true"}Dao.delete{$domainObjectName}(Integer.parseInt(ids[i]));
+			}
+		}
+	}
+
+	public void set{$domainObjectName}Dao({$domainObjectName}Dao {$domainObjectName firstLetterLower="true"}Dao) {
+		this.{$domainObjectName firstLetterLower="true"}Dao = {$domainObjectName firstLetterLower="true"}Dao;
+	}
+}

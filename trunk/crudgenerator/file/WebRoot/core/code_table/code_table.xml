@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings>
+	<mapping id="sex">
+		<node key="0" value="男" />
+		<node key="1" value="女" />
+		<node key="2" value="保密" />
+	</mapping>
+	<mapping id="yesOrNo">
+		<node key="0" value="否" />
+		<node key="1" value="是" />
+	</mapping>
+	<mapping id="ifEnable">
+		<node key="0" value="禁用" />
+		<node key="1" value="启用" />
+	</mapping>
+	<mapping id="ifDisp">
+		<node key="0" value="不显示" />
+		<node key="1" value="显示" />
+	</mapping>
+</mappings>
