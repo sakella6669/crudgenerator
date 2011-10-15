@@ -16,6 +16,6 @@
 	<classpathentry kind="lib" path="lib/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="lib/commons-io-1.4.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/LiuTongUtils"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/DBImporter"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/dboper"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
