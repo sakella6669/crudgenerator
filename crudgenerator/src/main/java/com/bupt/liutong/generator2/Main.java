@@ -43,12 +43,12 @@ public class Main {
 		// 配置文件
 		SAXReader sax = new SAXReader();
 		Document config = sax.read(BASE_PATH
-				+ "/src/com/bupt/liutong/generator2/config/".replace("/",
+				+ "/src/main/java/com/bupt/liutong/generator2/config/".replace("/",
 						File.separator) + "config.xml");
 		Element configRoot = config.getRootElement();
 		// 模型文件
 		Document model = sax.read(BASE_PATH
-				+ "/src/com/bupt/liutong/generator2/config/".replace("/",
+				+ "/src/main/java/com/bupt/liutong/generator2/config/".replace("/",
 						File.separator) + "model.xml");
 		Element modelRoot = model.getRootElement();
 
@@ -66,7 +66,9 @@ public class Main {
 		String targetPrj = configRoot.selectSingleNode(
 				"//config/parameters/parameter[@id='targetPrj']").valueOf(
 				"@value");
+		// FileUtils.deleteFolder(targetPrj);
 		FileUtils.forceCopyFolder(BASE_PATH + File.separator + "file", targetPrj);
+		FileUtils.cleanFolder(targetPrj, ".svn");
 	}
 
 	private static void generateCode(TransformerFactory factory,

@@ -7,77 +7,75 @@
 
 	<templates>
 		<!-- dynamic generated code -->
-		<template path="src/com/bupt/liutong/generator2/template/gen_dto.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/dto/gen/Gen${table.clazz}.java" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/gen_form.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/form/gen/Gen${table.clazz}Form.java" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/gen_dao.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/dao/gen/Gen${table.clazz}Dao.java" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/gen_sqlmap.xml.xsl"
-			targetPath="src/com/bupt/liutong/${package}/sqlmap/gen/gen_${table.name}.xml" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/gen_bo.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/bo/gen/Gen${table.clazz}Bo.java" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/gen_action.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/action/gen/Gen${table.clazz}Action.java"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_dto.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/dto/gen/Gen${table.clazz}.java" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_form.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/form/gen/Gen${table.clazz}Form.java" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_dao.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/dao/gen/Gen${table.clazz}Dao.java" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_sqlmap.xml.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/sqlmap/gen/gen_${table.name}.xml" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_bo.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/bo/gen/Gen${table.clazz}Bo.java" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_action.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/action/gen/Gen${table.clazz}Action.java"
 			override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/list.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/list.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_list.jsp" />
-		<template path="src/com/bupt/liutong/generator2/template/list_head.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/list_head.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_list_head.jsp" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/list_query.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/list_query.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_list_query.jsp" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/list_result.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/list_result.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_list_result.jsp" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/insert.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/insert.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_insert.jsp" />
-		<template path="src/com/bupt/liutong/generator2/template/insert_head.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/insert_head.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_insert_head.jsp" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/insert_input.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/insert_input.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_insert_input.jsp" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/update.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/update.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_update.jsp" />
-		<template path="src/com/bupt/liutong/generator2/template/update_head.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/update_head.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_update_head.jsp" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/update_input.jsp.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/update_input.jsp.xsl"
 			targetPath="WebRoot/${package}/${table.clazz.lower}/${table.name}_update_input.jsp" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/ddl.sql.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/ddl.sql.xsl"
 			targetPath="sql/${table.name}.sql" override="true" />
 			
 		<!-- written generated layer -->
-		<template path="src/com/bupt/liutong/generator2/template/dto.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/dto/${table.clazz}.java" />
-		<template path="src/com/bupt/liutong/generator2/template/form.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/form/${table.clazz}Form.java" />
-		<template path="src/com/bupt/liutong/generator2/template/dao.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/dao/${table.clazz}Dao.java" />
-		<template path="src/com/bupt/liutong/generator2/template/sqlmap.xml.xsl"
-			targetPath="src/com/bupt/liutong/${package}/sqlmap/${table.name}.xml" />
-		<template path="src/com/bupt/liutong/generator2/template/bo.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/bo/${table.clazz}Bo.java" />
-		<template path="src/com/bupt/liutong/generator2/template/action.java.xsl"
-			targetPath="src/com/bupt/liutong/${package}/action/${table.clazz}Action.java" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/dto.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/dto/${table.clazz}.java" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/form.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/form/${table.clazz}Form.java" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/dao.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/dao/${table.clazz}Dao.java" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/sqlmap.xml.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/sqlmap/${table.name}.xml" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/bo.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/bo/${table.clazz}Bo.java" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/action.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/action/${table.clazz}Action.java" />
 
 		<!-- dynamic generated config -->
-		<template path="src/com/bupt/liutong/generator2/template/ibatis.xml.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/ibatis.xml.xsl"
 			targetPath="WebRoot/WEB-INF/ibatis/ibatis.xml" transform="model" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/web.xml.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/web.xml.xsl"
 			targetPath="WebRoot/WEB-INF/web.xml" transform="model" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/struts.xml.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/struts.xml.xsl"
 			targetPath="WebRoot/WEB-INF/struts/struts.xml" transform="model" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/struts-package.xml.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/struts-package.xml.xsl"
 			targetPath="WebRoot/WEB-INF/struts/struts-${package}.xml" transform="package" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/spring.xml.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/spring.xml.xsl"
 			targetPath="WebRoot/WEB-INF/spring/spring.xml" transform="config" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/spring-gen-package.xml.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/spring-gen-package.xml.xsl"
 			targetPath="WebRoot/WEB-INF/spring/spring-gen-${package}.xml" transform="package" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/spring-package.xml.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/spring-package.xml.xsl"
 			targetPath="WebRoot/WEB-INF/spring/spring-${package}.xml" transform="package" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/com.genuitec.eclipse.core.prefs.xsl"
-			targetPath=".settings/com.genuitec.eclipse.core.prefs" transform="model" override="true" />
-		<template path="src/com/bupt/liutong/generator2/template/.mymetadata.xsl"
-			targetPath=".mymetadata" transform="config" />
-		<template path="src/com/bupt/liutong/generator2/template/.project.xsl"
+		<template path="src/main/java/com/bupt/liutong/generator2/template/.project.xsl"
 			targetPath=".project" transform="config" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/pom.xml.xsl"
+			targetPath="pom.xml" transform="config" />
 	</templates>
 
 	<parameters>
@@ -86,6 +84,6 @@
 		<parameter id="baseDir" value="com/bupt/liutong" />
 		<parameter id="basePackage" value="com.bupt.liutong" />
 		<parameter id="prjName" value="result" />
-		<parameter id="targetPrj" value="G:\Workspaces\result" />
+		<parameter id="targetPrj" value="F:\temp\result" />
 	</parameters>
 </config>
