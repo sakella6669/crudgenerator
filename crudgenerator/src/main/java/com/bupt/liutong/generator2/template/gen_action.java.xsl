@@ -13,7 +13,7 @@ import org.apache.struts.action.ActionMapping;
 
 import com.bupt.liutong.core.base.BaseAction;
 import <xsl:value-of select="parameters/parameter[@id='basePackage']/@value"/>.<xsl:value-of select="@package" />.bo.gen.Gen<xsl:value-of select="@clazz" />Bo;
-import <xsl:value-of select="parameters/parameter[@id='basePackage']/@value"/>.<xsl:value-of select="@package" />.form.gen.Gen<xsl:value-of select="@clazz" />Form;
+import <xsl:value-of select="parameters/parameter[@id='basePackage']/@value"/>.<xsl:value-of select="@package" />.form.<xsl:value-of select="@clazz" />Form;
 import com.bupt.liutong.util.BeanUtils;
 
 public class Gen<xsl:value-of select="@clazz" />Action extends BaseAction {
@@ -23,42 +23,38 @@ public class Gen<xsl:value-of select="@clazz" />Action extends BaseAction {
 	public ActionForward get<xsl:value-of select="@clazz" />sByPage(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) {
-		Gen<xsl:value-of select="@clazz" />Form gen<xsl:value-of select="@clazz" />Form = (Gen<xsl:value-of select="@clazz" />Form) form;
+		<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form = (<xsl:value-of select="@clazz" />Form) form;
 		request.setAttribute("<xsl:value-of select="string:firstLetterLower(@clazz)" />FormList", gen<xsl:value-of select="@clazz" />Bo.get<xsl:value-of select="@clazz" />sByPage(
-				gen<xsl:value-of select="@clazz" />Form, request));
-		putPageInfo(request, gen<xsl:value-of select="@clazz" />Form);
+				<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form, request));
+		putPageInfo(request, <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form);
 		return mapping.findForward("get<xsl:value-of select="@clazz" />sByPageSuccess");
 	}
 
 	public ActionForward insert<xsl:value-of select="@clazz" />(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		<xsl:for-each select="column[@itemType=50]">
-		request.setAttribute("<xsl:value-of select="@field"/>List", getOptionList(ctm.get("<xsl:value-of select="@codeMapping"/>"), false));
-		</xsl:for-each>
+		<xsl:for-each select="column[@itemType=50]">request.setAttribute("<xsl:value-of select="@field"/>List", getOptionList(ctm.get("<xsl:value-of select="@codeMapping"/>"), false));</xsl:for-each>
 		return mapping.findForward("insert<xsl:value-of select="@clazz" />Success");
 	}
 
 	public ActionForward insert<xsl:value-of select="@clazz" />Do(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		Gen<xsl:value-of select="@clazz" />Form gen<xsl:value-of select="@clazz" />Form = (Gen<xsl:value-of select="@clazz" />Form) form;
-		gen<xsl:value-of select="@clazz" />Bo.insert<xsl:value-of select="@clazz" />(gen<xsl:value-of select="@clazz" />Form);
+		<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form = (<xsl:value-of select="@clazz" />Form) form;
+		gen<xsl:value-of select="@clazz" />Bo.insert<xsl:value-of select="@clazz" />(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form);
 		return mapping.findForward("insert<xsl:value-of select="@clazz" />DoSuccess");
 	}
 
 	public ActionForward update<xsl:value-of select="@clazz" />(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		<xsl:for-each select="column[@itemType=50]">
-		request.setAttribute("<xsl:value-of select="@field"/>List", getOptionList(ctm.get("<xsl:value-of select="@codeMapping"/>"), false));
-		</xsl:for-each>
-		Gen<xsl:value-of select="@clazz" />Form gen<xsl:value-of select="@clazz" />Form = (Gen<xsl:value-of select="@clazz" />Form) form;
-		BeanUtils.copyProperties(gen<xsl:value-of select="@clazz" />Form, gen<xsl:value-of select="@clazz" />Bo.get<xsl:value-of select="@clazz" />ById(gen<xsl:value-of select="@clazz" />Form));
+		<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form = (<xsl:value-of select="@clazz" />Form) form;
+		<xsl:for-each select="column[@itemType=50]">request.setAttribute("<xsl:value-of select="@field"/>List", getOptionList(ctm.get("<xsl:value-of select="@codeMapping"/>"), false));</xsl:for-each>
+		BeanUtils.copyProperties(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form, gen<xsl:value-of select="@clazz" />Bo.get<xsl:value-of select="@clazz" />ById(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form));
 		return mapping.findForward("update<xsl:value-of select="@clazz" />Success");
 	}
 
 	public ActionForward update<xsl:value-of select="@clazz" />Do(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		Gen<xsl:value-of select="@clazz" />Form gen<xsl:value-of select="@clazz" />Form = (Gen<xsl:value-of select="@clazz" />Form) form;
-		gen<xsl:value-of select="@clazz" />Bo.update<xsl:value-of select="@clazz" />(gen<xsl:value-of select="@clazz" />Form);
+		<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form = (<xsl:value-of select="@clazz" />Form) form;
+		gen<xsl:value-of select="@clazz" />Bo.update<xsl:value-of select="@clazz" />(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form);
 		return mapping.findForward("update<xsl:value-of select="@clazz" />DoSuccess");
 	}
 

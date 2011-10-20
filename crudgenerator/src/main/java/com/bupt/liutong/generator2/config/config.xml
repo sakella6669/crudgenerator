@@ -7,10 +7,10 @@
 
 	<templates>
 		<!-- dynamic generated code -->
-		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_dto.java.xsl"
-			targetPath="src/main/java/com/bupt/liutong/${package}/dto/gen/Gen${table.clazz}.java" override="true" />
-		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_form.java.xsl"
-			targetPath="src/main/java/com/bupt/liutong/${package}/form/gen/Gen${table.clazz}Form.java" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/dto.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/dto/${table.clazz}.java" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/form.java.xsl"
+			targetPath="src/main/java/com/bupt/liutong/${package}/form/${table.clazz}Form.java" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_dao.java.xsl"
 			targetPath="src/main/java/com/bupt/liutong/${package}/dao/gen/Gen${table.clazz}Dao.java" override="true" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/gen_sqlmap.xml.xsl"
@@ -44,10 +44,6 @@
 			targetPath="sql/${table.name}.sql" override="true" />
 			
 		<!-- written generated layer -->
-		<template path="src/main/java/com/bupt/liutong/generator2/template/dto.java.xsl"
-			targetPath="src/main/java/com/bupt/liutong/${package}/dto/${table.clazz}.java" />
-		<template path="src/main/java/com/bupt/liutong/generator2/template/form.java.xsl"
-			targetPath="src/main/java/com/bupt/liutong/${package}/form/${table.clazz}Form.java" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/dao.java.xsl"
 			targetPath="src/main/java/com/bupt/liutong/${package}/dao/${table.clazz}Dao.java" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/sqlmap.xml.xsl"
@@ -58,24 +54,24 @@
 			targetPath="src/main/java/com/bupt/liutong/${package}/action/${table.clazz}Action.java" />
 
 		<!-- dynamic generated config -->
-		<template path="src/main/java/com/bupt/liutong/generator2/template/ibatis.xml.xsl"
-			targetPath="WebRoot/WEB-INF/ibatis/ibatis.xml" transform="model" override="true" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/web.xml.xsl"
 			targetPath="WebRoot/WEB-INF/web.xml" transform="model" override="true" />
-		<template path="src/main/java/com/bupt/liutong/generator2/template/struts.xml.xsl"
-			targetPath="WebRoot/WEB-INF/struts/struts.xml" transform="model" override="true" />
-		<template path="src/main/java/com/bupt/liutong/generator2/template/struts-package.xml.xsl"
-			targetPath="WebRoot/WEB-INF/struts/struts-${package}.xml" transform="package" override="true" />
-		<template path="src/main/java/com/bupt/liutong/generator2/template/spring.xml.xsl"
-			targetPath="WebRoot/WEB-INF/spring/spring.xml" transform="config" override="true" />
-		<template path="src/main/java/com/bupt/liutong/generator2/template/spring-gen-package.xml.xsl"
-			targetPath="WebRoot/WEB-INF/spring/spring-gen-${package}.xml" transform="package" override="true" />
-		<template path="src/main/java/com/bupt/liutong/generator2/template/spring-package.xml.xsl"
-			targetPath="WebRoot/WEB-INF/spring/spring-${package}.xml" transform="package" override="true" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/.project.xsl"
 			targetPath=".project" transform="config" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/pom.xml.xsl"
 			targetPath="pom.xml" transform="config" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/ibatis.xml.xsl"
+			targetPath="src/main/resources/ibatis.xml" transform="model" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/struts.xml.xsl"
+			targetPath="src/main/resources/struts.xml" transform="model" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/struts-package.xml.xsl"
+			targetPath="src/main/resources/struts-${package}.xml" transform="package" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/spring.xml.xsl"
+			targetPath="src/main/resources/spring.xml" transform="config" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/spring-gen-package.xml.xsl"
+			targetPath="src/main/resources/spring-gen-${package}.xml" transform="package" override="true" />
+		<template path="src/main/java/com/bupt/liutong/generator2/template/spring-package.xml.xsl"
+			targetPath="src/main/resources/spring-${package}.xml" transform="package" override="true" />
 	</templates>
 
 	<parameters>

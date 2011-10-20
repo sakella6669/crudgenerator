@@ -14,7 +14,7 @@
 		parameter="com.bupt.liutong.ApplicationResources" />]]>
     
 	&lt;plug-in className="org.springframework.web.struts.ContextLoaderPlugIn"&gt;
-		&lt;set-property property="contextConfigLocation" value="/WEB-INF/spring/spring.xml<xsl:for-each select="package">,/WEB-INF/spring/spring-gen-<xsl:value-of select="@name" />.xml,/WEB-INF/spring/spring-<xsl:value-of select="@name" />.xml</xsl:for-each>" /&gt;
+		&lt;set-property property="contextConfigLocation" value="/WEB-INF/classes/spring.xml<xsl:for-each select="package">,/WEB-INF/classes/spring-gen-<xsl:value-of select="@name" />.xml,/WEB-INF/classes/spring-<xsl:value-of select="@name" />.xml</xsl:for-each>" /&gt;
 	&lt;/plug-in&gt;
 <![CDATA[</struts-config>]]>
     </root>

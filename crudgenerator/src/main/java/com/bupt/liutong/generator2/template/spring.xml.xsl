@@ -44,7 +44,7 @@
 			value="com.ibatis.sqlmap.engine.transaction.jdbc.JdbcTransactionConfig" />
 	</bean>
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-		<property name="configLocation" value="/WEB-INF/ibatis/ibatis.xml" />
+		<property name="configLocation" value="/WEB-INF/classes/ibatis.xml" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="transactionConfigClass" ref="transactionConfigClass" />
 	</bean>

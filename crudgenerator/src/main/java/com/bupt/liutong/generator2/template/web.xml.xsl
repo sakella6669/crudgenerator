@@ -42,12 +42,12 @@
 		</servlet-class>
 		<init-param>
 			<param-name>config</param-name>
-			<param-value>/WEB-INF/struts/struts.xml</param-value>
+			<param-value>/WEB-INF/classes/struts.xml</param-value>
 		</init-param>]]>
         <xsl:for-each select="package">
 		&lt;init-param&gt;
 			&lt;param-name&gt;config/<xsl:value-of select="@name"/>&lt;/param-name&gt;
-			&lt;param-value&gt;/WEB-INF/struts/struts-<xsl:value-of select="@name"/>.xml&lt;/param-value&gt;
+			&lt;param-value&gt;/WEB-INF/classes/struts-<xsl:value-of select="@name"/>.xml&lt;/param-value&gt;
 		&lt;/init-param>
         </xsl:for-each>
 		<![CDATA[<init-param>
