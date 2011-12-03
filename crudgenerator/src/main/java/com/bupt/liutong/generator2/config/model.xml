@@ -2,11 +2,11 @@
 <model xmlns="http://www.w3school.com.cn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.w3school.com.cn model.xsd">
 	<package name="bbs">
-		<table name="bbs_board" clazz="Board" chs="帖子">
+		<table name="bbs_board" clazz="Board" chs="版块">
 			<column name="id" field="id" chs="版块id" dbType="int" javaType="Integer" length="11"
 				inputItem="false" isPrimary="true" autoIncrement="true" />
 			<column name="parentId" field="parentId" chs="父版块id" dbType="int" javaType="Integer"
-				length="11" inputItem="false" />
+				length="11" defaultValue="-1" />
 			<column name="name" field="name" chs="版块名称" dbType="varchar" javaType="String"
 				length="60" itemType="10" mustInput="true" listDisp="true" />
 			<column name="des" field="des" chs="描述" dbType="text" javaType="String"
