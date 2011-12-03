@@ -1,0 +1,1 @@
+http://localhost:8080/result/bbs/board.do?method=getBoardsByPage&searchFlag=1
