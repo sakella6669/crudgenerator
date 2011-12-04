@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Iterator;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -19,6 +20,7 @@ import org.dom4j.Node;
 import org.dom4j.io.DocumentResult;
 import org.dom4j.io.DocumentSource;
 import org.dom4j.io.SAXReader;
+import org.xml.sax.SAXException;
 
 import com.bupt.liutong.sql.importer.DBImporter;
 import com.bupt.liutong.util.FileUtils;
@@ -34,11 +36,11 @@ public class Main {
 	 * @throws IOException
 	 * @throws DocumentException
 	 * @throws SQLException
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
 	 */
 	public static void main(String[] args) throws TransformerException,
-			IOException, DocumentException, SQLException {
-
-		TransformerFactory factory = TransformerFactoryImpl.newInstance();
+			IOException, DocumentException, SQLException, SAXException, ParserConfigurationException {
 		// 数据源
 		// 配置文件
 		SAXReader sax = new SAXReader();
@@ -56,7 +58,7 @@ public class Main {
 		copyStaticCode(configRoot);
 
 		// 生成动态代码
-		generateCode(factory, configRoot, modelRoot);
+		generateCode(configRoot, modelRoot);
 
 		// 把生成的SQL导入数据库
 		importDatabase(configRoot);
@@ -68,11 +70,10 @@ public class Main {
 				"@value");
 		// FileUtils.deleteFolder(targetPrj);
 		FileUtils.forceCopyFolder(BASE_PATH + File.separator + "file", targetPrj);
-		FileUtils.cleanFolder(targetPrj, ".svn");
+		// FileUtils.cleanFolder(targetPrj, ".svn");
 	}
 
-	private static void generateCode(TransformerFactory factory,
-			Element configRoot, Element modelRoot) throws DocumentException, TransformerException, IOException {
+	private static void generateCode(Element configRoot, Element modelRoot) throws DocumentException, TransformerException, IOException {
 		// 数据源
 		Element parameters = configRoot.element("parameters");
 		// 模板
@@ -94,7 +95,7 @@ public class Main {
 			if (transformFlag != null && transformFlag.equals("model")) {
 				// 以整个model为单位做转换
 				modelRoot.add(parameters.detach());
-				transform(factory, modelRoot, template, targetPath);
+				transform(modelRoot, template, targetPath);
 			} else if(transformFlag != null && transformFlag.equals("package")){
 				// 以一个package为单位做转换
 				for (Iterator<?> j = modelRoot.elementIterator("package"); j.hasNext();) {
@@ -102,7 +103,7 @@ public class Main {
 					pkg.add(parameters.detach());
 					String pkgName = pkg.attributeValue("name");
 					String finalTargetPath = targetPath.replace("${package}", pkgName);
-					transform(factory, pkg, template, finalTargetPath);
+					transform(pkg, template, finalTargetPath);
 				}
 			} else if (transformFlag == null || transformFlag.equals("table")) {
 				// 以一个table为单位做转换
@@ -126,17 +127,17 @@ public class Main {
 						finalTargetPath = finalTargetPath.replace("${table.name}",
 								tableName);
 						finalTargetPath = finalTargetPath.replace("${package}", pkgName);
-						transform(factory, table, template, finalTargetPath);
+						transform(table, template, finalTargetPath);
 					}
 				}
 			} else if(transformFlag != null && transformFlag.equals("config")){
-				transform(factory, configDataSrc, template, targetPath);
+				transform(configDataSrc, template, targetPath);
 			}
 		}
 		configRoot.add(parameters.detach());
 	}
 	
-	private static void transform(TransformerFactory factory, Element dataSrc, Element template, String targetPath) throws TransformerException, DocumentException, IOException {
+	private static void transform(Element dataSrc, Element template, String targetPath) throws TransformerException, DocumentException, IOException {
 		
 		boolean override = StringUtils.isTrue(template
 				.attributeValue("override")) ? true : false;
@@ -151,6 +152,7 @@ public class Main {
 					+ File.separator
 					+ template.attributeValue("path").replace("/",
 							File.separator);
+			TransformerFactory factory = TransformerFactoryImpl.newInstance();
 			Transformer transformer = factory
 					.newTransformer(new StreamSource(templatePath));
 			DocumentSource source = new DocumentSource(
