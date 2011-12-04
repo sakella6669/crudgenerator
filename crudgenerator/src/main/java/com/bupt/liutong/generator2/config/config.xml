@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config>
+<config xmlns="http://www.w3school.com.cn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.w3school.com.cn config.xsd">
 	<db driverClass="com.mysql.jdbc.Driver"
 		jdbcUrl="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8"
-		userId="root" password="sa">
-	</db>
+		userId="root" password="sa" />
 
 	<templates>
 		<!-- dynamic generated code -->
