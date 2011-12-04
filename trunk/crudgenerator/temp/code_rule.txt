@@ -1,0 +1,9 @@
+1 CRUD对应select insert update delete
+2 java dto xxx.模块名.实体名 com.bupt.liutong.alb.Photo
+3 jsp xxx/模块名/实体名/操作名_实体名.jsp 
+com/bupt/liutong/alb/photo/insert_photo.jsp
+4 数据库 模块名_实体名 alb_photo
+5 js/
+6 css
+7 validate
+
