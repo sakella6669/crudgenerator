@@ -11,12 +11,15 @@
 			<artifactId>dboper</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-
+		
+		<!-- XSLT processor -->
 		<dependency>
 			<groupId>xalan</groupId>
 			<artifactId>xalan</artifactId>
 			<version>2.7.1</version>
 		</dependency>
+		
+		<!-- XPath engine -->
 		<dependency>
 			<groupId>jaxen</groupId>
 			<artifactId>jaxen</artifactId>
