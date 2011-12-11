@@ -3,9 +3,14 @@ package com.bupt.liutong.generator2;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -22,7 +27,12 @@ import org.dom4j.io.DocumentSource;
 import org.dom4j.io.SAXReader;
 import org.xml.sax.SAXException;
 
+import com.bupt.liutong.generator2.setter.ColumnDbTypeSetter;
+import com.bupt.liutong.generator2.setter.ColumnLengthSetter;
+import com.bupt.liutong.generator2.setter.ColumnNameSetter;
+import com.bupt.liutong.generator2.setter.TableNameSetter;
 import com.bupt.liutong.sql.importer.DBImporter;
+import com.bupt.liutong.util.Dom4jUtils;
 import com.bupt.liutong.util.FileUtils;
 import com.bupt.liutong.util.StringUtils;
 
@@ -43,19 +53,22 @@ public class Main {
 			IOException, DocumentException, SQLException, SAXException, ParserConfigurationException {
 		// 数据源
 		// 配置文件
-		SAXReader sax = new SAXReader();
-		Document config = sax.read(BASE_PATH
-				+ "/src/main/java/com/bupt/liutong/generator2/config/".replace("/",
-						File.separator) + "config.xml");
-		Element configRoot = config.getRootElement();
+		Element configRoot = Dom4jUtils.getRootElementWithNS(
+				BASE_PATH + "/src/main/java/com/bupt/liutong/generator2/config/".replace("/", File.separator) + "config.xml", 
+				"c", "http://localhost/schema/config", null);
+		
 		// 模型文件
-		Document model = sax.read(BASE_PATH
-				+ "/src/main/java/com/bupt/liutong/generator2/config/".replace("/",
-						File.separator) + "model.xml");
-		Element modelRoot = model.getRootElement();
+		Element modelRoot = Dom4jUtils.getRootElementWithNS(
+				BASE_PATH + "/src/main/java/com/bupt/liutong/generator2/config/".replace("/", File.separator) + "model.xml", 
+				"m", "http://localhost/schema/model", configRoot);
 
 		// 生成静态代码
 		copyStaticCode(configRoot);
+		
+		// 预处理模型，填充默认值
+		new ColumnDbTypeSetter().setDefaultValue(
+				new ColumnNameSetter().setDefaultValue(
+				new TableNameSetter().setDefaultValue(modelRoot)));
 
 		// 生成动态代码
 		generateCode(configRoot, modelRoot);
@@ -66,11 +79,15 @@ public class Main {
 
 	private static void copyStaticCode(Element configRoot) throws IOException {
 		String targetPrj = configRoot.selectSingleNode(
-				"//config/parameters/parameter[@id='targetPrj']").valueOf(
+				"//c:config/c:parameters/c:parameter[@id='targetPrj']").valueOf(
 				"@value");
 		// FileUtils.deleteFolder(targetPrj);
 		FileUtils.forceCopyFolder(BASE_PATH + File.separator + "file", targetPrj);
 		FileUtils.deleteFolder(targetPrj, "\\.svn");
+	}
+	
+	private static void fillDefaultValue(Element modelRoot) {
+		
 	}
 
 	private static void generateCode(Element configRoot, Element modelRoot) throws DocumentException, TransformerException, IOException {
@@ -80,12 +97,13 @@ public class Main {
 		Element templates = configRoot.element("templates");
 		Element configDataSrc = DocumentHelper.parseText(configRoot.asXML().replace("&", "&amp;")).getRootElement();
 
+		String targetPrj = parameters.selectSingleNode(
+				"c:parameter[@id='targetPrj']").valueOf("@value");
+		
 		// 遍历所有模板
 		for (Iterator<?> i = templates.elementIterator("template"); i.hasNext();) {
 			Element template = (Element) i.next();
 			// 输出路径或输出路径表达式（含$符号）
-			String targetPrj = parameters.selectSingleNode(
-					"parameter[@id='targetPrj']").valueOf("@value");
 			String targetPath = targetPrj
 					+ File.separator
 					+ template.attributeValue("targetPath").replace("/",
@@ -172,9 +190,9 @@ public class Main {
 	private static void importDatabase(Element configRoot) throws SQLException {
 		// 参数
 		String targetPrj = configRoot.selectSingleNode(
-				"//config/parameters/parameter[@id='targetPrj']").valueOf(
+				"//c:config/c:parameters/c:parameter[@id='targetPrj']").valueOf(
 				"@value");
-		Node dbConfig = configRoot.selectSingleNode("//config/db");
+		Node dbConfig = configRoot.selectSingleNode("//c:config/c:db");
 		String driverClass = dbConfig.valueOf("@driverClass");
 		String jdbcUrl = dbConfig.valueOf("@jdbcUrl");
 		String userId = dbConfig.valueOf("@userId");
