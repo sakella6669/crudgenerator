@@ -70,7 +70,7 @@ public class Main {
 				"@value");
 		// FileUtils.deleteFolder(targetPrj);
 		FileUtils.forceCopyFolder(BASE_PATH + File.separator + "file", targetPrj);
-		// FileUtils.cleanFolder(targetPrj, ".svn");
+		FileUtils.deleteFolder(targetPrj, "\\.svn");
 	}
 
 	private static void generateCode(Element configRoot, Element modelRoot) throws DocumentException, TransformerException, IOException {
