@@ -3,28 +3,21 @@ package com.bupt.liutong.generator2;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
 
 import org.apache.xalan.processor.TransformerFactoryImpl;
-import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.DocumentResult;
 import org.dom4j.io.DocumentSource;
-import org.dom4j.io.SAXReader;
 import org.xml.sax.SAXException;
 
 import com.bupt.liutong.generator2.setter.ColumnDbTypeSetter;
@@ -66,9 +59,10 @@ public class Main {
 		copyStaticCode(configRoot);
 		
 		// 预处理模型，填充默认值
-		new ColumnDbTypeSetter().setDefaultValue(
+		new ColumnLengthSetter().setDefaultValue(
+				new ColumnDbTypeSetter().setDefaultValue(
 				new ColumnNameSetter().setDefaultValue(
-				new TableNameSetter().setDefaultValue(modelRoot)));
+				new TableNameSetter().setDefaultValue(modelRoot))));
 
 		// 生成动态代码
 		generateCode(configRoot, modelRoot);
@@ -84,10 +78,6 @@ public class Main {
 		// FileUtils.deleteFolder(targetPrj);
 		FileUtils.forceCopyFolder(BASE_PATH + File.separator + "file", targetPrj);
 		FileUtils.deleteFolder(targetPrj, "\\.svn");
-	}
-	
-	private static void fillDefaultValue(Element modelRoot) {
-		
 	}
 
 	private static void generateCode(Element configRoot, Element modelRoot) throws DocumentException, TransformerException, IOException {
