@@ -19,6 +19,13 @@ import com.bupt.liutong.util.BeanUtils;
 public class Gen<xsl:value-of select="@clazz" />Bo extends BaseBo {
 
 	private Gen<xsl:value-of select="@clazz" />Dao gen<xsl:value-of select="@clazz" />Dao;
+	
+	public List&lt;<xsl:value-of select="@clazz" />Form&gt; get<xsl:value-of select="@clazz" />s(<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form) {
+		<xsl:value-of select="@clazz" /><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/> = new <xsl:value-of select="@clazz" />();
+		BeanUtils.copyProperties(<xsl:value-of select="string:firstLetterLower(@clazz)"/>, <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form);
+		List&lt;<xsl:value-of select="@clazz" />&gt; <xsl:value-of select="string:firstLetterLower(@clazz)"/>s = gen<xsl:value-of select="@clazz" />Dao.get<xsl:value-of select="@clazz" />s(<xsl:value-of select="string:firstLetterLower(@clazz)"/>);
+		return BeanUtils.dtoToForm(<xsl:value-of select="string:firstLetterLower(@clazz)"/>s, <xsl:value-of select="@clazz" />Form.class);
+	}
 
 	public List&lt;<xsl:value-of select="@clazz" />Form&gt; get<xsl:value-of select="@clazz" />sByPage(<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form,
 			HttpServletRequest request) {

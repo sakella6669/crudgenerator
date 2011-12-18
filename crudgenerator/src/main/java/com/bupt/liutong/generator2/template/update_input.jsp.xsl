@@ -19,14 +19,26 @@
 			<xsl:value-of select="@chs"/>
 			<![CDATA[</td>]]>
 			<![CDATA[<td class="td70">]]>
-			<xsl:if test="normalize-space(@itemType)='' or @itemType!=50">
-				<![CDATA[<html:text property="]]><xsl:value-of select="@field"/><![CDATA[" size="15"/>]]><xsl:if test="string:isTrue(@mustInput)">&amp;nbsp;&amp;nbsp;*</xsl:if>
+			<xsl:if test="@itemType!=30 and @itemType!=40 and @itemType!=50 and @itemType!=60">
+				&lt;html:text property="<xsl:value-of select="@field"/>" size="30" maxlength="<xsl:value-of select="@length"/>" /&gt;
+			</xsl:if>
+			<xsl:if test="@itemType=30">
+				&lt;html:text property="<xsl:value-of select="@field"/>Str" /&gt;
+			</xsl:if>
+			<xsl:if test="@itemType=40">
+				&lt;html:textarea property="<xsl:value-of select="@field"/>"&gt;<![CDATA[</html:textarea>]]>
 			</xsl:if>
 			<xsl:if test="@itemType=50">
 				<![CDATA[<html:select property="]]><xsl:value-of select="@field"/><![CDATA[">
 					<html:options collection="]]><xsl:value-of select="@field"/><![CDATA[List" property="label" labelProperty="value" />
 				</html:select>]]>
 			</xsl:if>
+			<xsl:if test="@itemType=60">
+				<![CDATA[<html:select property="]]><xsl:value-of select="@field"/><![CDATA[">
+					<html:options collection="]]><xsl:value-of select="string:firstLetterLower(@joinTable)"/><![CDATA[List" property="]]><xsl:value-of select="@joinField"/><![CDATA[" labelProperty="]]><xsl:value-of select="@joinLabelField"/><![CDATA[" />
+				</html:select>]]>
+			</xsl:if>
+			<xsl:if test="string:isTrue(@mustInput)">&amp;nbsp;&amp;nbsp;*</xsl:if>
 			<![CDATA[</td></tr>]]>
 		</xsl:for-each>
 	<![CDATA[</table>]]>

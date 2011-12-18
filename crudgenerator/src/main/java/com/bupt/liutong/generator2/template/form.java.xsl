@@ -18,15 +18,15 @@ import com.bupt.liutong.core.base.BaseForm;
 public class <xsl:value-of select="@clazz"/>Form extends BaseForm {
 <xsl:for-each select="column">
 	private <xsl:value-of select="@javaType"/><xsl:text> </xsl:text><xsl:value-of select="@field"/>;
-	<xsl:if test="@itemType=30">private String <xsl:value-of select="@field"/>Str;</xsl:if>
+	<xsl:if test="@itemType=30">private String <xsl:value-of select="@field"/>Str = DateUtils.getDateStr(new Date());</xsl:if>
 	<xsl:if test="@itemType=50">private String <xsl:value-of select="@field"/>Str;</xsl:if>
 </xsl:for-each>
 <xsl:for-each select="column">
+	<!-- 普通项 -->
 	public <xsl:value-of select="@javaType"/> get<xsl:value-of select="string:firstLetterUpper(@field)"/>(){
 		return <xsl:value-of select="@field"/>;
 	}
-	<!-- 普通项 -->
-	<xsl:if test="normalize-space(@itemType)='' or (@itemType!=30 and @itemType!=50)">
+	<xsl:if test="@itemType!=30 and @itemType!=50">
 	public void set<xsl:value-of select="string:firstLetterUpper(@field)"/>(<xsl:value-of select="@javaType"/><xsl:text> </xsl:text><xsl:value-of select="@field"/>){
 		this.<xsl:value-of select="@field"/> = <xsl:value-of select="@field"/>;
 	}

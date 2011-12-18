@@ -44,6 +44,9 @@
 												<xs:attribute name="autoIncrement" type="xs:boolean"
 													default="false" />
 												<xs:attribute name="codeMapping" type="xs:string" />
+												<xs:attribute name="joinTable" type="xs:string" />
+												<xs:attribute name="joinField" type="xs:string" />
+												<xs:attribute name="joinLabelField" type="xs:string" />
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>

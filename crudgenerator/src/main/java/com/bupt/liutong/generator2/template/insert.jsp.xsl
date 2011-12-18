@@ -30,7 +30,7 @@
 		function validate(){
 			return validateEmpty(new Array(]]><xsl:for-each select="column[@mustInput='true']"><xsl:if test="position()!=1">,</xsl:if>'<xsl:value-of select="@field"/>'</xsl:for-each><![CDATA[))
 				&& validateNum(new Array(]]><xsl:for-each select="column[@itemType=21]"><xsl:if test="position()!=1">,</xsl:if>'<xsl:value-of select="@field"/>'</xsl:for-each><![CDATA[))
-				&& validateDate(new Array(]]><xsl:for-each select="column[@itemType=30]"><xsl:if test="position()!=1">,</xsl:if>'<xsl:value-of select="@field"/>'</xsl:for-each><![CDATA[));
+				&& validateDate(new Array(]]><xsl:for-each select="column[@itemType=30]"><xsl:if test="position()!=1">,</xsl:if>'<xsl:value-of select="@field"/>Str'</xsl:for-each><![CDATA[));
 		}
 	</script>
 </head>
