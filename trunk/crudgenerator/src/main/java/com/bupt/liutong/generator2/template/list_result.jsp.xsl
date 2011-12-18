@@ -33,8 +33,11 @@
 						</td>]]>
 						<xsl:for-each select="column[string:isTrue(@listDisp)]">
 						<![CDATA[<td>]]>
-							<xsl:if test="@itemType!=50">
+							<xsl:if test="@itemType!=30 and @itemType!=50">
 								${iter.<xsl:value-of select="@field"/>}
+							</xsl:if>
+							<xsl:if test="@itemType=30">
+								${iter.<xsl:value-of select="@field"/>Str}
 							</xsl:if>
 							<xsl:if test="@itemType=50">
 								${iter.<xsl:value-of select="@field"/>Str}

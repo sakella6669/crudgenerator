@@ -17,6 +17,11 @@ public class Gen<xsl:value-of select="@clazz"/>Dao {
 	protected Ibatis ibatis;
 
 	@SuppressWarnings("unchecked")
+	public List&lt;<xsl:value-of select="@clazz"/>&gt; get<xsl:value-of select="@clazz"/>s(<xsl:value-of select="@clazz"/><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/>) {
+		return (List&lt;<xsl:value-of select="@clazz"/>&gt;) ibatis.queryForList("<xsl:value-of select="parameters/parameter[@id='genPrefixLower']/@value"/><xsl:value-of select="@name"/>.get<xsl:value-of select="@clazz"/>s", <xsl:value-of select="string:firstLetterLower(@clazz)"/>);
+	}
+
+	@SuppressWarnings("unchecked")
 	public List&lt;<xsl:value-of select="@clazz"/>&gt; get<xsl:value-of select="@clazz"/>sByPage(<xsl:value-of select="@clazz"/><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/>) {
 		return (List&lt;<xsl:value-of select="@clazz"/>&gt;) ibatis.queryForPage("<xsl:value-of select="parameters/parameter[@id='genPrefixLower']/@value"/><xsl:value-of select="@name"/>.get<xsl:value-of select="@clazz"/>s", <xsl:value-of select="string:firstLetterLower(@clazz)"/>);
 	}

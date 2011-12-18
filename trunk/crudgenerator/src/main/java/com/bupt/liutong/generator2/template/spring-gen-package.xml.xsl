@@ -15,6 +15,11 @@
   &lt;/bean&gt;
   &lt;bean id="gen<xsl:value-of select="@clazz"/>Action" class="<xsl:value-of select="../parameters/parameter[@id='basePackage']/@value"/>.<xsl:value-of select="../@name"/>.action.gen.Gen<xsl:value-of select="@clazz"/>Action" parent="baseAction"&gt;
     &lt;property name="gen<xsl:value-of select="@clazz"/>Bo" ref="gen<xsl:value-of select="@clazz"/>Bo"&gt;&lt;/property&gt;
+    <xsl:for-each select="column">
+		<xsl:if test="@joinTable!=''">
+			&lt;property name="gen<xsl:value-of select="@joinTable"/>Bo" ref="gen<xsl:value-of select="@joinTable"/>Bo"&gt;&lt;/property&gt;
+		</xsl:if>
+	</xsl:for-each>
   &lt;/bean&gt;
       </xsl:for-each>
 <![CDATA[</beans>]]>

@@ -81,6 +81,6 @@
 		<parameter id="baseDir" value="com/bupt/liutong" />
 		<parameter id="basePackage" value="com.bupt.liutong" />
 		<parameter id="prjName" value="result" />
-		<parameter id="targetPrj" value="F:\temp\result" />
+		<parameter id="targetPrj" value="E:\WorkSpace_OSGi\result" />
 	</parameters>
 </config>
