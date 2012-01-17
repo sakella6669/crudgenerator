@@ -29,6 +29,11 @@ public class Gen<xsl:value-of select="@clazz" />Action extends BaseAction {
 			private Gen<xsl:value-of select="@joinTable" />Bo gen<xsl:value-of select="@joinTable" />Bo;
 		</xsl:if>
 	</xsl:for-each>
+	<xsl:for-each select="column">
+		<xsl:if test="@m2mJoinTable!=''">
+			private Gen<xsl:value-of select="@m2mJoinTable" />Bo gen<xsl:value-of select="@m2mJoinTable" />Bo;
+		</xsl:if>
+	</xsl:for-each>
 
 	public ActionForward get<xsl:value-of select="@clazz" />sByPage(ActionMapping mapping,
 			ActionForm form, HttpServletRequest request,
@@ -45,6 +50,11 @@ public class Gen<xsl:value-of select="@clazz" />Action extends BaseAction {
 		<xsl:for-each select="column">
 			<xsl:if test="@joinTable!=''">
 			request.setAttribute("<xsl:value-of select="string:firstLetterLower(@joinTable)"/>List", gen<xsl:value-of select="@joinTable" />Bo.get<xsl:value-of select="@joinTable" />s(null));
+			</xsl:if>
+		</xsl:for-each>
+		<xsl:for-each select="column">
+			<xsl:if test="@m2mJoinTable!=''">
+			request.setAttribute("<xsl:value-of select="string:firstLetterLower(@joinTable)"/>List", gen<xsl:value-of select="@m2mJoinTable" />Bo.get<xsl:value-of select="@m2mJoinTable" />s(null));
 			</xsl:if>
 		</xsl:for-each>
 		<xsl:for-each select="column[@itemType=50]">request.setAttribute("<xsl:value-of select="@field"/>List", getOptionList(ctm.get("<xsl:value-of select="@codeMapping"/>"), false));</xsl:for-each>

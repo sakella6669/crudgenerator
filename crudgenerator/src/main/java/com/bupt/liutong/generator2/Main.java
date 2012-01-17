@@ -25,7 +25,7 @@ import com.bupt.liutong.generator2.setter.ColumnLengthSetter;
 import com.bupt.liutong.generator2.setter.ColumnNameSetter;
 import com.bupt.liutong.generator2.setter.ImportClassSetter;
 import com.bupt.liutong.generator2.setter.TableNameSetter;
-import com.bupt.liutong.sql.importer.DBImporter;
+import com.bupt.liutong.sql.DBOper;
 import com.bupt.liutong.util.Dom4jUtils;
 import com.bupt.liutong.util.FileUtils;
 import com.bupt.liutong.util.StringUtils;
@@ -49,12 +49,12 @@ public class Main {
 		// 配置文件
 		Element configRoot = Dom4jUtils.getRootElementWithNS(
 				BASE_PATH + "/src/main/java/com/bupt/liutong/generator2/config/".replace("/", File.separator) + "config.xml", 
-				"c", "http://localhost/schema/config", null);
+				"c", "http://localhost/schema/config");
 		
 		// 模型文件
 		Element modelRoot = Dom4jUtils.getRootElementWithNS(
 				BASE_PATH + "/src/main/java/com/bupt/liutong/generator2/config/".replace("/", File.separator) + "model.xml", 
-				"m", "http://localhost/schema/model", configRoot);
+				"m", "http://localhost/schema/model");
 
 		// 生成静态代码
 		copyStaticCode(configRoot);
@@ -190,7 +190,7 @@ public class Main {
 		String userId = dbConfig.valueOf("@userId");
 		String password = dbConfig.valueOf("@password");
 
-		DBImporter importer = new DBImporter(driverClass, jdbcUrl, userId,
+		DBOper dbOper = new DBOper(driverClass, jdbcUrl, userId,
 				password);
 		File folder = new File(targetPrj + File.separator + "sql");
 		if (!folder.exists())
@@ -198,7 +198,7 @@ public class Main {
 		File[] files = folder.listFiles();
 		for (File file : files) {
 			if (file.getName().endsWith(".sql")) {
-				importer.executeImport(file.getPath());
+				dbOper.importSQLFile(file.getPath());
 			}
 		}
 	}

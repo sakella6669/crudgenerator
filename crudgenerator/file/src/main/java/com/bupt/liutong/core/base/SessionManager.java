@@ -3,14 +3,11 @@ package com.bupt.liutong.core.base;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.bupt.liutong.core.dao.CommonDao;
 import com.bupt.liutong.util.BeanUtils;
 
 import static com.bupt.liutong.core.base.Constants.*;
 
 public class SessionManager {
-	
-	private CommonDao commonDao;
 	
 	/**
 	 * 有查询条件的分页
@@ -20,7 +17,7 @@ public class SessionManager {
 	 * @param request
 	 */
 	public void pagingWithCriteria(BaseForm baseForm, BaseDto baseDto,
-			String countSqlMapId, HttpServletRequest request) {
+			CountDao countDao, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		// 新查询
 		if (baseForm.getSearchFlag().equals(NEW_SEARCH_FLAG)) {
@@ -29,7 +26,8 @@ public class SessionManager {
 			// 复制form到dto
 			BeanUtils.copyProperties(baseDto, baseForm);
 			// 设置查询结果总数
-			int totalRow = commonDao.getListCount(countSqlMapId, baseDto);
+			//int totalRow = commonDao.getListCount(countSqlMapId, baseDto);
+			int totalRow = countDao.getCount(baseDto);
 			baseForm.setTotalRow(totalRow);
 			baseDto.setTotalRow(totalRow);
 
@@ -57,14 +55,15 @@ public class SessionManager {
 	 * @param countSqlMapId
 	 */
 	public void pagingWithNoCriteria(BaseForm baseForm, BaseDto baseDto,
-			String countSqlMapId) {
+			CountDao countDao) {
 		BeanUtils.copyProperties(baseDto, baseForm);
 		if(baseForm.getSearchFlag().equals(Constants.NEW_SEARCH_FLAG)){
 			// 恢复到初始第1页
 			baseForm.setCurPage(1);
 			baseDto.setCurPage(1);
 			// 设置查询结果总数
-			int totalRow = commonDao.getListCount(countSqlMapId, baseDto);
+			//int totalRow = commonDao.getListCount(countSqlMapId, baseDto);
+			int totalRow = countDao.getCount(baseDto);
 			baseForm.setTotalRow(totalRow);
 			baseDto.setTotalRow(totalRow);
 		} else {
@@ -130,8 +129,4 @@ public class SessionManager {
 //			BeanUtils.copyProperties(popWindowForm, lastTimeForm);
 //		}
 //	}
-
-	public void setCommonDao(CommonDao commonDao) {
-		this.commonDao = commonDao;
-	}
 }

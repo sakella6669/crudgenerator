@@ -21,38 +21,38 @@ public class Gen<xsl:value-of select="@clazz" />Bo extends BaseBo {
 	private Gen<xsl:value-of select="@clazz" />Dao gen<xsl:value-of select="@clazz" />Dao;
 	
 	public List&lt;<xsl:value-of select="@clazz" />Form&gt; get<xsl:value-of select="@clazz" />s(<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form) {
-		<xsl:value-of select="@clazz" /><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/> = new <xsl:value-of select="@clazz" />();
-		BeanUtils.copyProperties(<xsl:value-of select="string:firstLetterLower(@clazz)"/>, <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form);
+		<xsl:value-of select="@clazz" /><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/> = BeanUtils.copyProperties(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form, <xsl:value-of select="@clazz"/>.class);
 		List&lt;<xsl:value-of select="@clazz" />&gt; <xsl:value-of select="string:firstLetterLower(@clazz)"/>s = gen<xsl:value-of select="@clazz" />Dao.get<xsl:value-of select="@clazz" />s(<xsl:value-of select="string:firstLetterLower(@clazz)"/>);
-		return BeanUtils.dtoToForm(<xsl:value-of select="string:firstLetterLower(@clazz)"/>s, <xsl:value-of select="@clazz" />Form.class);
+		return BeanUtils.copyList(<xsl:value-of select="string:firstLetterLower(@clazz)"/>s, <xsl:value-of select="@clazz" />Form.class);
 	}
 
 	public List&lt;<xsl:value-of select="@clazz" />Form&gt; get<xsl:value-of select="@clazz" />sByPage(<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form,
 			HttpServletRequest request) {
 		<xsl:value-of select="@clazz" /><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/> = new <xsl:value-of select="@clazz" />();
-		sm.pagingWithNoCriteria(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form, <xsl:value-of select="string:firstLetterLower(@clazz)"/>, "gen_<xsl:value-of select="@name" />.get<xsl:value-of select="@clazz" />sCount");
+		sm.pagingWithNoCriteria(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form, <xsl:value-of select="string:firstLetterLower(@clazz)"/>, gen<xsl:value-of select="@clazz" />Dao);
 		List&lt;<xsl:value-of select="@clazz" />&gt; <xsl:value-of select="string:firstLetterLower(@clazz)"/>s = gen<xsl:value-of select="@clazz" />Dao.get<xsl:value-of select="@clazz" />sByPage(<xsl:value-of select="string:firstLetterLower(@clazz)"/>);
-		return BeanUtils.dtoToForm(<xsl:value-of select="string:firstLetterLower(@clazz)"/>s, <xsl:value-of select="@clazz" />Form.class);
+		return BeanUtils.copyList(<xsl:value-of select="string:firstLetterLower(@clazz)"/>s, <xsl:value-of select="@clazz" />Form.class);
 	}
 
 	public <xsl:value-of select="@clazz" />Form get<xsl:value-of select="@clazz" />ById(<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form) {
-		<xsl:value-of select="@clazz" />Form resultForm = new <xsl:value-of select="@clazz" />Form();
 		<xsl:value-of select="@clazz" /><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/> = gen<xsl:value-of select="@clazz" />Dao.get<xsl:value-of select="@clazz" />ById(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form.getId());
-		BeanUtils.copyProperties(resultForm, <xsl:value-of select="string:firstLetterLower(@clazz)"/>);
-		return resultForm;
+		return BeanUtils.copyProperties(<xsl:value-of select="string:firstLetterLower(@clazz)"/>, <xsl:value-of select="@clazz"/>Form.class);
 	}
 
 	@Transactional
 	public void insert<xsl:value-of select="@clazz" />(<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form) {
-		<xsl:value-of select="@clazz" /><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/> = new <xsl:value-of select="@clazz" />();
-		BeanUtils.copyProperties(<xsl:value-of select="string:firstLetterLower(@clazz)"/>, <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form);
+		<xsl:value-of select="@clazz" /><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/> = BeanUtils.copyProperties(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form, <xsl:value-of select="@clazz"/>.class);
 		gen<xsl:value-of select="@clazz" />Dao.insert<xsl:value-of select="@clazz" />(<xsl:value-of select="string:firstLetterLower(@clazz)"/>);
+		<xsl:for-each select="column">
+			<xsl:if test="@m2mJoinTable!=''">
+				gen<xsl:value-of select="@clazz" />Dao.insert<xsl:value-of select="@clazz" /><xsl:value-of select="@m2mJoinTable" />(<xsl:value-of select="string:firstLetterLower(@clazz)"/>);
+			</xsl:if>
+		</xsl:for-each>
 	}
 
 	@Transactional
 	public void update<xsl:value-of select="@clazz" />(<xsl:value-of select="@clazz" />Form <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form) {
-		<xsl:value-of select="@clazz" /><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/> = new <xsl:value-of select="@clazz" />();
-		BeanUtils.copyProperties(<xsl:value-of select="string:firstLetterLower(@clazz)"/>, <xsl:value-of select="string:firstLetterLower(@clazz)"/>Form);
+		<xsl:value-of select="@clazz" /><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/> = BeanUtils.copyProperties(<xsl:value-of select="string:firstLetterLower(@clazz)"/>Form, <xsl:value-of select="@clazz"/>.class);
 		gen<xsl:value-of select="@clazz" />Dao.update<xsl:value-of select="@clazz" />(<xsl:value-of select="string:firstLetterLower(@clazz)"/>);
 	}
 

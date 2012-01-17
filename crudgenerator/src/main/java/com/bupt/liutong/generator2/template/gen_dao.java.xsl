@@ -9,12 +9,17 @@ package <xsl:value-of select="parameters/parameter[@id='basePackage']/@value"/>.
 
 import java.util.List;
 
+import com.bupt.liutong.core.base.CountDao;
 import com.bupt.liutong.core.base.Ibatis;
 import <xsl:value-of select="parameters/parameter[@id='basePackage']/@value"/>.<xsl:value-of select="@package"/>.dto.<xsl:value-of select="@clazz"/>;
 
-public class Gen<xsl:value-of select="@clazz"/>Dao {
+public class Gen<xsl:value-of select="@clazz"/>Dao implements CountDao {
 
 	protected Ibatis ibatis;
+
+	public Integer getCount(Object parameter) {
+		return ibatis.queryForInt("<xsl:value-of select="parameters/parameter[@id='genPrefixLower']/@value"/><xsl:value-of select="@name"/>.get<xsl:value-of select="@clazz"/>sCount", parameter);
+	}
 
 	@SuppressWarnings("unchecked")
 	public List&lt;<xsl:value-of select="@clazz"/>&gt; get<xsl:value-of select="@clazz"/>s(<xsl:value-of select="@clazz"/><xsl:text> </xsl:text><xsl:value-of select="string:firstLetterLower(@clazz)"/>) {

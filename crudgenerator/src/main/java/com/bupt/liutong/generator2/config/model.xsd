@@ -47,6 +47,9 @@
 												<xs:attribute name="joinTable" type="xs:string" />
 												<xs:attribute name="joinField" type="xs:string" />
 												<xs:attribute name="joinLabelField" type="xs:string" />
+												<xs:attribute name="m2mJoinTable" type="xs:string" />
+												<xs:attribute name="m2mJoinField" type="xs:string" />
+												<xs:attribute name="m2mJoinLabelField" type="xs:string" />
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>

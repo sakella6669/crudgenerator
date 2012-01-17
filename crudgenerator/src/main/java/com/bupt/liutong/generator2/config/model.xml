@@ -2,6 +2,17 @@
 <model xmlns="http://localhost/schema/model" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://localhost/schema/model model.xsd">
+	<package name="right">
+		<table clazz="User" chs="用户">
+			<!--  m2mJoinTable="Role" m2mJoinField="id" m2mJoinLabelField="name"  -->
+			<column field="id" chs="用户id" isPrimary="true" />
+			<column field="name" chs="账号" />
+		</table>
+		<table clazz="Role" chs="角色">
+			<column field="id" chs="角色id" isPrimary="true"/>
+			<column field="name" chs="角色名" />
+		</table>
+	</package>
 	<package name="bbs">
 		<table clazz="Board" chs="版块">
 			<column field="id" chs="版块id" javaType="Integer" 
