@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://localhost/schema/config" xmlns="http://localhost/schema/config"
+	elementFormDefault="qualified">
+	<xs:element name="config">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="db" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:attribute name="driverClass" type="xs:string"
+							use="required" />
+						<xs:attribute name="jdbcUrl" type="xs:string" use="required" />
+						<xs:attribute name="userId" type="xs:string" use="required" />
+						<xs:attribute name="password" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="templates" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="template" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="path" type="xs:string" use="required" />
+									<xs:attribute name="targetPath" type="xs:string" use="required" />
+									<xs:attribute name="transform" type="xs:string" default="table" />
+									<xs:attribute name="override" type="xs:boolean" default="false" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="parameters" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="parameter" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="id" type="xs:string" use="required" />
+									<xs:attribute name="value" type="xs:string" use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
