@@ -1,4 +1,4 @@
-package com.bupt.liutong.generator2.setter;
+package com.bupt.liutong.generator.setter;
 
 import org.dom4j.Element;
 
