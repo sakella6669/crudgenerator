@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:string="xalan://com.bupt.liutong.util.StringUtils"
+	extension-element-prefixes="string">
+	<xsl:template match="table">
+		<root>
+<![CDATA[<%@ page language="java" pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="/WEB-INF/struts-extend.tld" prefix="extend"%>
+
+	<table class="table1">
+		<html:hidden property="]]><xsl:value-of select="column[@isPrimary='true']/@field"/><![CDATA[" />]]>
+		<xsl:for-each select="column[string:isEmptyOrTrue(@inputItem)]">
+			<![CDATA[<tr><td class="td30">]]>
+			<xsl:value-of select="@chs"/>
+			<![CDATA[</td>]]>
+			<![CDATA[<td class="td70">]]>
+			<xsl:if test="@itemType!=30 and @itemType!=40 and @itemType!=50 and @itemType!=60">
+				&lt;html:text property="<xsl:value-of select="@field"/>" size="30" maxlength="<xsl:value-of select="@length"/>" /&gt;
+			</xsl:if>
+			<xsl:if test="@itemType=30">
+				&lt;html:text property="<xsl:value-of select="@field"/>Str" /&gt;
+			</xsl:if>
+			<xsl:if test="@itemType=40">
+				&lt;html:textarea property="<xsl:value-of select="@field"/>"&gt;<![CDATA[</html:textarea>]]>
+			</xsl:if>
+			<xsl:if test="@itemType=50">
+				<![CDATA[<html:select property="]]><xsl:value-of select="@field"/><![CDATA[">
+					<html:options collection="]]><xsl:value-of select="@field"/><![CDATA[List" property="label" labelProperty="value" />
+				</html:select>]]>
+			</xsl:if>
+			<xsl:if test="@itemType=60">
+				<![CDATA[<html:select property="]]><xsl:value-of select="@field"/><![CDATA[">
+					<html:options collection="]]><xsl:value-of select="string:firstLetterLower(@joinTable)"/><![CDATA[List" property="]]><xsl:value-of select="@joinField"/><![CDATA[" labelProperty="]]><xsl:value-of select="@joinLabelField"/><![CDATA[" />
+				</html:select>]]>
+			</xsl:if>
+			<xsl:if test="string:isTrue(@mustInput)">&amp;nbsp;&amp;nbsp;*</xsl:if>
+			<![CDATA[</td></tr>]]>
+		</xsl:for-each>
+		<xsl:for-each select="column[@m2mJoinTable!='' and @m2mAutoGen='true']">
+			<![CDATA[<tr><td class="td30">&nbsp;]]>
+				<xsl:value-of select="@m2mJoinTable"/>.<xsl:value-of select="@m2mJoinField"/>
+			<![CDATA[</td>]]>
+			<![CDATA[<td class="td70">
+				<logic:iterate id="iter" name="]]><xsl:value-of select="string:firstLetterLower(@m2mJoinTable)"/><![CDATA[FormList" indexId="i">
+					<extend:checkbox property="]]><xsl:value-of select="string:firstLetterLower(@m2mJoinTable)"/><![CDATA[Forms[${i}].]]><xsl:value-of select="@m2mJoinField"/><![CDATA[" value="${iter.]]><xsl:value-of select="@m2mJoinField"/><![CDATA[}">${iter.]]><xsl:value-of select="@m2mJoinLabelField"/><![CDATA[}</extend:checkbox>&nbsp;&nbsp;
+				</logic:iterate>
+			</td></tr>]]>
+		</xsl:for-each>
+	<![CDATA[</table>]]>
+		</root>	
+	</xsl:template>
+</xsl:stylesheet>

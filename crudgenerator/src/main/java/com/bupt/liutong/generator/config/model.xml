@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://localhost/schema/model" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://localhost/schema/model model.xsd">
+	<package name="myapp">
+		<table clazz="Tag" chs="标签">
+			<column field="id" chs="标签id" javaType="Integer" 
+				inputItem="false" isPrimary="true" autoIncrement="true" />
+			<column field="name" chs="标签名" listDisp="true" />
+			<column field="parentId" chs="上级标签id" javaType="Integer"
+				itemType="60" defaultValue="-1" 
+				joinTable="Tag" joinField="id" joinLabelField="name" />
+		</table>
+	</package>
+	<package name="right">
+		<table clazz="User" chs="用户">
+			<column field="id" chs="用户id" javaType="Integer"
+				inputItem="false" isPrimary="true" autoIncrement="true" 
+				m2mJoinTable="Role" m2mJoinField="id" m2mJoinLabelField="name"
+				m2mAutoGen="true" />
+			<column field="name" chs="账号" />
+		</table>
+		<table clazz="Role" chs="角色">
+			<column field="id" chs="角色id" javaType="Integer" 
+				inputItem="false" isPrimary="true" autoIncrement="true"/>
+			<column field="name" chs="角色名" />
+		</table>
+	</package>
+	<package name="bbs">
+		<table clazz="Board" chs="版块">
+			<column field="id" chs="版块id" javaType="Integer" 
+				inputItem="false" isPrimary="true" autoIncrement="true" />
+			<column field="parentId" chs="父版块id" javaType="Integer"
+				defaultValue="-1" />
+			<column field="name" chs="版块名称"
+				length="60" mustInput="true" queryItem="true" listDisp="true" />
+			<column field="des" chs="描述" dbType="text"
+				itemType="40" />
+			<column field="enabled" chs="是否显示" dbType="tinyint" javaType="Integer"
+				itemType="50" listDisp="true" codeMapping="ifDisp" />
+			<column field="seq" chs="顺序号" dbType="tinyint" javaType="Integer" 
+				length="4" defaultValue="10" itemType="20" listDisp="true" />
+			<column field="needPassword" chs="是否需要密码" dbType="tinyint" javaType="Integer"
+				itemType="50" listDisp="true" codeMapping="yesOrNo" />
+			<column field="password" chs="密码" 
+				length="30" />
+			<column field="auth" chs="是否需要密码" dbType="tinyint" javaType="Integer"
+				itemType="50" listDisp="true" codeMapping="yesOrNo" />
+			<column field="level" chs="版块层级" dbType="tinyint" javaType="Integer" length="2" />
+			<column field="mainPostNum" chs="发帖数" javaType="Integer" />
+			<column field="postNum" chs="总帖数" javaType="Integer" />
+		</table>
+		<table clazz="Post" chs="帖子">
+			<column field="id" chs="帖子id" javaType="Long" 
+				inputItem="false" isPrimary="true" autoIncrement="true" />
+			<column field="parentId" chs="主帖id" javaType="Long"
+				inputItem="true" defaultValue="-1" />
+			<column field="boardId" chs="版块id" javaType="Integer"
+				itemType="60" joinTable="Board" joinField="id" joinLabelField="name" />
+			<column field="title" chs="标题"
+				length="150" mustInput="true" queryItem="true" listDisp="true" />
+			<column field="replyNum" chs="回复数" javaType="Integer"
+				inputItem="false" defaultValue="0" />
+			<column field="clickNum" chs="点击数" javaType="Integer"
+				inputItem="false" defaultValue="0" />
+			<column field="userName" chs="发帖人id"
+				length="30" listDisp="true" />
+			<column field="nickName" chs="发帖人"
+				length="30" listDisp="true" />
+			<column field="content" chs="帖子内容" dbType="text" javaType="String"
+				itemType="40" listDisp="true" />
+			<column field="createTime" chs="发帖时间" dbType="datetime" javaType="Date"
+				itemType="30" listDisp="true" />
+			<column field="ip" chs="ip" dbType="char" javaType="String"
+				length="15" />
+			<column field="lastReplyTime" chs="最后回帖时间" dbType="datetime" javaType="Date"
+				itemType="30" listDisp="true" />
+			<column field="lastUserName" chs="最后发帖人id"
+				length="30" />
+			<column field="lastNickName" chs="最后发帖人"
+				length="30" />
+			<column field="elite" chs="是否精华" dbType="tinyint" javaType="Integer"
+				itemType="50" listDisp="true" codeMapping="yesOrNo" />
+			<column field="top" chs="是否置顶" dbType="tinyint" javaType="Integer"
+				itemType="50" listDisp="true" codeMapping="yesOrNo" />
+			<column field="locked" chs="是否锁定" dbType="tinyint" javaType="Integer"
+				itemType="50" listDisp="true" codeMapping="yesOrNo" />
+			<column field="hidden" chs="是否隐藏" dbType="tinyint" javaType="Integer"
+				itemType="50" listDisp="true" codeMapping="yesOrNo" />
+		</table>
+	</package>
+</model>
