@@ -8,6 +8,8 @@ import static com.bupt.liutong.core.base.Constants.*;
 
 public abstract class BaseForm extends ActionForm {
 
+	private static final long serialVersionUID = -3884566251730450373L;
+	
 	/** 每页的记录数 */
 	private int pageSize = 15;
 

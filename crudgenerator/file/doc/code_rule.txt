@@ -1,4 +1,11 @@
 1 CRUD对应select insert update delete
+action bo dao dto form sql js css 
+	action里包含自身的bo和其他模块的bo
+	bo里包含自身的dao和其他模块的bo，bo的职责是让action或其他bo只调用1行代码即可实现功能，
+并且做form和dto的转换
+	dao里只有和sqlmap中对应的操作
+	dto里和数据库完全对应
+	form里针对Date类型字段、下拉列表字段会有Str结尾的附加字段
 2 java dto xxx.模块名.实体名 com.bupt.liutong.alb.Photo
 3 jsp xxx/模块名/实体名/操作名_实体名.jsp 
 com/bupt/liutong/alb/photo/insert_photo.jsp

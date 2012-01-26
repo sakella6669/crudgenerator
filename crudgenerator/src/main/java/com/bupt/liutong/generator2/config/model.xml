@@ -2,14 +2,27 @@
 <model xmlns="http://localhost/schema/model" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://localhost/schema/model model.xsd">
+	<package name="myapp">
+		<table clazz="Tag" chs="标签">
+			<column field="id" chs="标签id" javaType="Integer" 
+				inputItem="false" isPrimary="true" autoIncrement="true" />
+			<column field="name" chs="标签名" listDisp="true" />
+			<column field="parentId" chs="上级标签id" javaType="Integer"
+				itemType="60" defaultValue="-1" 
+				joinTable="Tag" joinField="id" joinLabelField="name" />
+		</table>
+	</package>
 	<package name="right">
 		<table clazz="User" chs="用户">
-			<!--  m2mJoinTable="Role" m2mJoinField="id" m2mJoinLabelField="name"  -->
-			<column field="id" chs="用户id" isPrimary="true" />
+			<column field="id" chs="用户id" javaType="Integer"
+				inputItem="false" isPrimary="true" autoIncrement="true" 
+				m2mJoinTable="Role" m2mJoinField="id" m2mJoinLabelField="name"
+				m2mAutoGen="true" />
 			<column field="name" chs="账号" />
 		</table>
 		<table clazz="Role" chs="角色">
-			<column field="id" chs="角色id" isPrimary="true"/>
+			<column field="id" chs="角色id" javaType="Integer" 
+				inputItem="false" isPrimary="true" autoIncrement="true"/>
 			<column field="name" chs="角色名" />
 		</table>
 	</package>

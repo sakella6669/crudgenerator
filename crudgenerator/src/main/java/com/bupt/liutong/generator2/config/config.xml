@@ -7,7 +7,7 @@
 		userId="root" password="sa" />
 
 	<templates>
-		<!-- dynamic generated code -->
+		<!-- generated layer code -->
 		<template path="src/main/java/com/bupt/liutong/generator2/template/dto.java.xsl"
 			targetPath="src/main/java/com/bupt/liutong/${package}/dto/${table.clazz}.java" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/form.java.xsl"
@@ -44,7 +44,7 @@
 		<template path="src/main/java/com/bupt/liutong/generator2/template/ddl.sql.xsl"
 			targetPath="sql/${table.name}.sql" override="true" />
 			
-		<!-- written generated layer -->
+		<!-- written layer code -->
 		<template path="src/main/java/com/bupt/liutong/generator2/template/dao.java.xsl"
 			targetPath="src/main/java/com/bupt/liutong/${package}/dao/${table.clazz}Dao.java" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/sqlmap.xml.xsl"
@@ -54,7 +54,7 @@
 		<template path="src/main/java/com/bupt/liutong/generator2/template/action.java.xsl"
 			targetPath="src/main/java/com/bupt/liutong/${package}/action/${table.clazz}Action.java" />
 
-		<!-- dynamic generated config -->
+		<!-- almost static code -->
 		<template path="src/main/java/com/bupt/liutong/generator2/template/web.xml.xsl"
 			targetPath="WebRoot/WEB-INF/web.xml" transform="model" override="true" />
 		<template path="src/main/java/com/bupt/liutong/generator2/template/.project.xsl"

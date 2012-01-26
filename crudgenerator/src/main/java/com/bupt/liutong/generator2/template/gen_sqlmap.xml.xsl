@@ -30,12 +30,12 @@
 	&lt;/select&gt;
 				
 	&lt;insert id="insert<xsl:value-of select="@clazz"/>" parameterClass="<xsl:value-of select="@clazz"/>"&gt;
-		INSERT <xsl:value-of select="@name"/>
-		(<xsl:for-each select="column[string:isEmptyOrTrue(@inputItem)]">
+		INSERT INTO <xsl:value-of select="@name"/>
+		(<xsl:for-each select="column[@inputItem='true']">
 		<xsl:if test="position()!=1">, </xsl:if>
 			<xsl:value-of select="@name"/>
 		</xsl:for-each>) VALUES
-		(<xsl:for-each select="column[string:isEmptyOrTrue(@inputItem)]">
+		(<xsl:for-each select="column[@inputItem='true']">
 		<xsl:if test="position()!=1">, </xsl:if>
 		<xsl:text>#</xsl:text><xsl:value-of select="@name"/><xsl:text>#</xsl:text>
 		<!--<xsl:if test="string:isEmpty(@defaultValue)">
@@ -45,6 +45,9 @@
         	<xsl:text>'</xsl:text><xsl:value-of select="@defaultValue"/><xsl:text>'</xsl:text>
 		</xsl:if>-->
 		</xsl:for-each>)
+		&lt;selectKey resultClass="<xsl:value-of select="column[@isPrimary='true']/@javaType"/>" type="post" keyProperty="<xsl:value-of select="column[@isPrimary='true']/@field"/>"&gt;
+			select LAST_INSERT_ID()
+		&lt;/selectKey&gt;
 	&lt;/insert&gt;
 				
 	&lt;update id="update<xsl:value-of select="@clazz"/>" parameterClass="<xsl:value-of select="@clazz"/>"&gt;
@@ -56,9 +59,16 @@
 		WHERE <xsl:value-of select="column[@isPrimary='true']/@name"/> = #<xsl:value-of select="column[@isPrimary='true']/@name"/>#
 	&lt;/update&gt;
 				
-	&lt;delete id="delete<xsl:value-of select="@clazz"/>" parameterClass="<xsl:value-of select="column[@isPrimary='true']/@javaType"/>"&gt;
+	&lt;delete id="delete<xsl:value-of select="@clazz"/>" parameterClass="<xsl:value-of select="@clazz"/>"&gt;
 		DELETE FROM <xsl:value-of select="@name"/>
-		WHERE <xsl:value-of select="column[@isPrimary='true']/@name"/> = #<xsl:value-of select="column[@isPrimary='true']/@name"/>#
+		&lt;dynamic prepend="WHERE"&gt;
+			&lt;isNotEmpty property="<xsl:value-of select="column[@isPrimary='true']/@name"/>" prepend="AND"&gt;
+				<xsl:value-of select="column[@isPrimary='true']/@name"/> = #<xsl:value-of select="column[@isPrimary='true']/@name"/>#
+			&lt;/isNotEmpty&gt;
+			<xsl:for-each select="column[@deleteCriteriaItem='true']">&lt;isNotEmpty property="<xsl:value-of select="@name"/>" prepend="AND"&gt;
+				<xsl:value-of select="@name"/> = #<xsl:value-of select="@field"/>#
+			&lt;/isNotEmpty&gt;</xsl:for-each>
+		&lt;/dynamic&gt;
 	&lt;/delete&gt;
 &lt;/sqlMap&gt;</root>	
 	</xsl:template>
