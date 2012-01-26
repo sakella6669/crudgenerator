@@ -31,7 +31,7 @@ public class Test {
 		configSchema.put("yaoming","http://www.w3school.com.cn");
 		configReader.getDocumentFactory().setXPathNamespaceURIs(configSchema);
 		Document config = configReader.read(BASE_PATH
-				+ "/src/main/java/com/bupt/liutong/generator2/config/".replace("/",
+				+ "/src/main/java/com/bupt/liutong/generator/config/".replace("/",
 						File.separator) + "config.xml");
 		/**
 		 * 
@@ -46,7 +46,7 @@ public class Test {
 		modelSchema.put("m","http://www.w3school.com.cn");
 		modelReader.getDocumentFactory().setXPathNamespaceURIs(modelSchema);
 		Document model = modelReader.read(BASE_PATH
-				+ "/src/main/java/com/bupt/liutong/generator2/config/".replace("/",
+				+ "/src/main/java/com/bupt/liutong/generator/config/".replace("/",
 						File.separator) + "model.xml");
 		Element modelRoot = model.getRootElement();
 		/**
@@ -57,7 +57,7 @@ public class Test {
 //		System.out.println(config.getRootElement().selectSingleNode(
 //				"/*[local-name()='config' and namespace-uri()='http://www.w3school.com.cn']/*[local-name()='db' and namespace-uri()='http://www.w3school.com.cn']"));
 		String targetPrj = config.getRootElement().selectSingleNode(
-				"//config:config/config:templates/config:template[@path='src/main/java/com/bupt/liutong/generator2/template/dto.java.xsl']").valueOf(
+				"//config:config/config:templates/config:template[@path='src/main/java/com/bupt/liutong/generator/template/dto.java.xsl']").valueOf(
 				"@override");
 		System.out.println(targetPrj);
 	}

@@ -1,4 +1,4 @@
-package com.bupt.liutong.generator2;
+package com.bupt.liutong.generator;
 
 import java.io.File;
 import java.io.IOException;
