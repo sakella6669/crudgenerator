@@ -13,7 +13,7 @@ import com.bupt.liutong.core.base.BaseDto;
 
 public class <xsl:value-of select="@clazz"/> extends BaseDto {
 <xsl:for-each select="column">
-	<xsl:text>	</xsl:text>private <xsl:value-of select="@javaType"/><xsl:text> </xsl:text><xsl:value-of select="@field"/>;
+	<xsl:text>	</xsl:text>private <xsl:value-of select="@javaType"/><xsl:text> </xsl:text><xsl:value-of select="@field"/><xsl:if test="@defaultValue!=''">=<xsl:value-of select="@javaType"/>.valueOf(<xsl:value-of select="@defaultValue"/>)</xsl:if>;
 </xsl:for-each>
 <xsl:for-each select="column">
 	public <xsl:value-of select="@javaType"/> get<xsl:value-of select="string:firstLetterUpper(@field)"/>(){

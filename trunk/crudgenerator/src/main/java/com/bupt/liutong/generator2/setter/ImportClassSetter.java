@@ -24,7 +24,7 @@ public class ImportClassSetter implements DefaultValueSetter {
 						String javaType = column.attributeValue("javaType");
 						if (StringUtils.isEmpty(javaType))
 							throw new NullPointerException("column field should not be null");
-						if (javaType.equals("Date")) {
+						if (javaType.equals("Date") && null == table.selectSingleNode("import[@clazz='java.util.Date']")) {
 							DefaultElement importDate = new DefaultElement("import");
 							DefaultElement importDateUtils = new DefaultElement("import");
 							DefaultAttribute clazzDate = new DefaultAttribute("clazz", "java.util.Date");
@@ -33,13 +33,7 @@ public class ImportClassSetter implements DefaultValueSetter {
 							importDateUtils.add(clazzDateUtils);
 							table.add(importDate);
 							table.add(importDateUtils);
-							continue;
 						}
-						
-//						String joinTable = column.attributeValue("joinTable");
-//						if (!StringUtils.isEmpty(joinTable)) {
-//							
-//						}
 					}
 				}
 			}

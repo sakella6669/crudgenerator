@@ -56,7 +56,6 @@
 		<property name="ibatis" ref="ibatis"></property>
 	</bean>
 	<bean id="sm" class="com.bupt.liutong.core.base.SessionManager">
-		<property name="commonDao" ref="commonDao"></property>
 	</bean>
 	<bean id="ctm" class="com.bupt.liutong.core.base.CodeTableManager">
 	</bean>

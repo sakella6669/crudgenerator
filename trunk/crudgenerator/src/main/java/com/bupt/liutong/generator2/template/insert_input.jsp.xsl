@@ -39,17 +39,15 @@
 			<xsl:if test="string:isTrue(@mustInput)">&amp;nbsp;&amp;nbsp;*</xsl:if>
 		<![CDATA[</td></tr>]]>
 	</xsl:for-each>
-	<xsl:for-each select="column[string:isEmptyOrTrue(@inputItem)]">
-		<xsl:if test="@m2mJoinTable!=''">
-			<![CDATA[<tr><td class="td30">&nbsp;</td>]]>
-				<xsl:value-of select="@m2mJoinTable"/>.<xsl:value-of select="@m2mJoinField"/>
-			<![CDATA[</td></tr>]]>
-			<![CDATA[<tr><td class="td70">&nbsp;</td>
-				<logic:iterate id="iter" name="]]><xsl:value-of select="string:firstLetterLower(@m2mJoinTable)"/><![CDATA[List">
-					<html:checkbox name="iter" property="]]><xsl:value-of select="@m2mJoinField"/><![CDATA[" />${iter.]]><xsl:value-of select="@m2mJoinField"/><![CDATA[}
-				</logic:iterate>
-			</td></tr>]]>
-		</xsl:if>
+	<xsl:for-each select="column[@m2mJoinTable!='' and @m2mAutoGen='true']">
+		<![CDATA[<tr><td class="td30">&nbsp;]]>
+			<xsl:value-of select="@m2mJoinTable"/>.<xsl:value-of select="@m2mJoinField"/>
+		<![CDATA[</td>]]>
+		<![CDATA[<td class="td70">
+			<logic:iterate id="iter" name="]]><xsl:value-of select="string:firstLetterLower(@m2mJoinTable)"/><![CDATA[FormList" indexId="i">
+				<html:checkbox property="]]><xsl:value-of select="string:firstLetterLower(@m2mJoinTable)"/><![CDATA[Forms[${i}].]]><xsl:value-of select="@m2mJoinField"/><![CDATA[" value="${iter.]]><xsl:value-of select="@m2mJoinField"/><![CDATA[}">${iter.]]><xsl:value-of select="@m2mJoinLabelField"/><![CDATA[}</html:checkbox>&nbsp;&nbsp;
+			</logic:iterate>
+		</td></tr>]]>
 	</xsl:for-each>
 	<![CDATA[</table>]]>
 		</root>	

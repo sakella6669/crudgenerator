@@ -44,16 +44,21 @@
 												<xs:attribute name="autoIncrement" type="xs:boolean"
 													default="false" />
 												<xs:attribute name="codeMapping" type="xs:string" />
+												<xs:attribute name="joinPackage" type="xs:string" />
 												<xs:attribute name="joinTable" type="xs:string" />
 												<xs:attribute name="joinField" type="xs:string" />
 												<xs:attribute name="joinLabelField" type="xs:string" />
+												<xs:attribute name="m2mJoinPackage" type="xs:string" />
 												<xs:attribute name="m2mJoinTable" type="xs:string" />
 												<xs:attribute name="m2mJoinField" type="xs:string" />
 												<xs:attribute name="m2mJoinLabelField" type="xs:string" />
+												<xs:attribute name="m2mAutoGen" type="xs:boolean" default="false" />
+												<xs:attribute name="deleteCriteriaItem" type="xs:boolean" default="false" />
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
 									<xs:attribute name="name" type="xs:string" />
+									<!-- <xs:attribute name="isRelationTable" type="xs:boolean" default="false" /> -->
 									<xs:attribute name="clazz" type="xs:string" use="required" />
 									<xs:attribute name="chs" type="xs:string" use="required" />
 								</xs:complexType>

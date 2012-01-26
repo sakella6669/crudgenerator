@@ -11,6 +11,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib uri="/WEB-INF/struts-extend.tld" prefix="extend"%>
 
 	<table class="table1">
 		<html:hidden property="]]><xsl:value-of select="column[@isPrimary='true']/@field"/><![CDATA[" />]]>
@@ -40,6 +41,16 @@
 			</xsl:if>
 			<xsl:if test="string:isTrue(@mustInput)">&amp;nbsp;&amp;nbsp;*</xsl:if>
 			<![CDATA[</td></tr>]]>
+		</xsl:for-each>
+		<xsl:for-each select="column[@m2mJoinTable!='' and @m2mAutoGen='true']">
+			<![CDATA[<tr><td class="td30">&nbsp;]]>
+				<xsl:value-of select="@m2mJoinTable"/>.<xsl:value-of select="@m2mJoinField"/>
+			<![CDATA[</td>]]>
+			<![CDATA[<td class="td70">
+				<logic:iterate id="iter" name="]]><xsl:value-of select="string:firstLetterLower(@m2mJoinTable)"/><![CDATA[FormList" indexId="i">
+					<extend:checkbox property="]]><xsl:value-of select="string:firstLetterLower(@m2mJoinTable)"/><![CDATA[Forms[${i}].]]><xsl:value-of select="@m2mJoinField"/><![CDATA[" value="${iter.]]><xsl:value-of select="@m2mJoinField"/><![CDATA[}">${iter.]]><xsl:value-of select="@m2mJoinLabelField"/><![CDATA[}</extend:checkbox>&nbsp;&nbsp;
+				</logic:iterate>
+			</td></tr>]]>
 		</xsl:for-each>
 	<![CDATA[</table>]]>
 		</root>	

@@ -24,6 +24,8 @@ import com.bupt.liutong.generator2.setter.ColumnDbTypeSetter;
 import com.bupt.liutong.generator2.setter.ColumnLengthSetter;
 import com.bupt.liutong.generator2.setter.ColumnNameSetter;
 import com.bupt.liutong.generator2.setter.ImportClassSetter;
+import com.bupt.liutong.generator2.setter.JoinSetter;
+import com.bupt.liutong.generator2.setter.M2MSetter;
 import com.bupt.liutong.generator2.setter.TableNameSetter;
 import com.bupt.liutong.sql.DBOper;
 import com.bupt.liutong.util.Dom4jUtils;
@@ -61,10 +63,12 @@ public class Main {
 		
 		// 预处理模型，填充默认值
 		new ImportClassSetter().setDefaultValue(
-				new ColumnLengthSetter().setDefaultValue(
-				new ColumnDbTypeSetter().setDefaultValue(
-				new ColumnNameSetter().setDefaultValue(
-				new TableNameSetter().setDefaultValue(modelRoot)))));
+			new ColumnLengthSetter().setDefaultValue(
+			new ColumnDbTypeSetter().setDefaultValue(
+			new ColumnNameSetter().setDefaultValue(
+			new TableNameSetter().setDefaultValue(
+			new M2MSetter().setDefaultValue(
+			new JoinSetter().setDefaultValue(modelRoot)))))));
 
 		// 生成动态代码
 		generateCode(configRoot, modelRoot);
